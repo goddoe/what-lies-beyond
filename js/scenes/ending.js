@@ -162,23 +162,7 @@ export class EndingScene {
     // Wait a moment after last message
     await this.wait(2000);
 
-    // Both mobile and desktop now show the hand
-    this.startPhase(PHASE.HAND_GRIP);
-  }
-
-  doHandGrip() {
-    const hand = document.getElementById('hand-silhouette');
-    const unit = document.getElementById('phone-hand-unit');
-
-    // Fade in the hand silhouette
-    setTimeout(() => {
-      hand.classList.add('visible');
-    }, 50);
-
-    // Apply subtle wobble to indicate grip
-    unit.style.animation = 'handGripWobble 2s ease-in-out infinite';
-
-    setTimeout(() => this.startPhase(PHASE.REACTION), 2500);
+    this.startPhase(PHASE.REACTION);
   }
 
   doReaction() {
@@ -255,10 +239,13 @@ export class EndingScene {
         requestAnimationFrame(() => restartBtn.classList.add('visible'));
         restartBtn.style.pointerEvents = 'auto';
         restartBtn.addEventListener('click', () => this.doRestart(), { once: true });
+        restartBtn.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: false });
 
         const credit = document.getElementById('credit');
+        credit.style.pointerEvents = 'auto';
         credit.classList.remove('hidden');
         requestAnimationFrame(() => credit.classList.add('visible'));
+        credit.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: false });
       }, 5000);
     }, 4000);
   }
@@ -307,9 +294,6 @@ export class EndingScene {
     phone.style.transform = '';
     phone.style.width = '';
     phone.style.height = '';
-
-    const hand = document.getElementById('hand-silhouette');
-    hand.classList.remove('visible');
 
     const unit = document.getElementById('phone-hand-unit');
     unit.style.animation = '';

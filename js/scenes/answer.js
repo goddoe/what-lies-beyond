@@ -1,4 +1,4 @@
-// answer.js — ACT 3-3: Fourth wall break, "92.0923%"
+// answer.js — ACT 3-3: Fourth wall break, "91.5573%"
 
 import { clearScreen, getBaseSize, setAlpha, resetAlpha } from '../engine/renderer.js';
 import { startDialogue, updateDialogue, isDialogueActive, setDialogueCallbacks, cleanupDialogue } from '../systems/dialogue.js';

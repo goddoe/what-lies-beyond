@@ -37,7 +37,7 @@ function createWorldElements() {
 }
 
 // Data stream characters
-const DATA_CHARS = '01001101 10110010 11001001 01110110 AVOLC ERROR NULL VOID 92.0923% SIM'.split(' ');
+const DATA_CHARS = '01001101 10110010 11001001 01110110 AVOLC ERROR NULL VOID 91.5573% SIM'.split(' ');
 
 export class TruthScene {
   constructor() {

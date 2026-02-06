@@ -1,4 +1,4 @@
-// oracle-presentation.js — ACT 2-4: 4 slides + 92.0923% countup
+// oracle-presentation.js — ACT 2-4: 4 slides + 91.5573% countup
 
 import { clearScreen, drawRect, drawRectStroke, drawText, drawLine, drawCircle, getBaseSize, setAlpha, resetAlpha, drawGradientRect } from '../engine/renderer.js';
 import { startDialogue, updateDialogue, isDialogueActive, setDialogueCallbacks, getCurrentNode, cleanupDialogue } from '../systems/dialogue.js';
@@ -45,9 +45,9 @@ export class OraclePresentationScene {
 
     // Countup animation (easeOutExpo)
     if (this.countupActive && !this.countupDone) {
-      this.countupValue += dt * 33; // Takes ~3s to reach 92.0923
-      if (this.countupValue >= 92.0923) {
-        this.countupValue = 92.0923;
+      this.countupValue += dt * 33; // Takes ~3s to reach 91.5573
+      if (this.countupValue >= 91.5573) {
+        this.countupValue = 91.5573;
         this.countupDone = true;
       }
     }

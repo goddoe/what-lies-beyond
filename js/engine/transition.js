@@ -47,6 +47,7 @@ export function glitchTransition(ms = 600) {
 
     function flash() {
       if (step >= totalSteps) {
+        el.style.background = '#000';
         el.style.opacity = '1';
         container.classList.remove('glitch-shake');
         setTimeout(resolve, 100);
