@@ -85,19 +85,21 @@ async function boot() {
   // Wait for fonts
   await document.fonts.ready;
 
-  // Init systems
+  // Init renderer
   const { ctx: renderCtx } = initRenderer();
   ctx = renderCtx;
-  initInput();
 
   // Clear to black
   clearScreen('#000000');
 
-  // Wait for language selection
+  // Wait for language selection (before initInput, which preventDefault on touch)
   const lang = await waitForLangSelect();
   setLang(lang);
   randomizeOracle();
   document.getElementById('lang-select').style.display = 'none';
+
+  // Init input after lang-select is dismissed (touchstart preventDefault blocks click)
+  initInput();
 
   // Start game loop
   running = true;
