@@ -6,6 +6,19 @@ export function setLang(lang) {
   currentLang = lang;
 }
 
+// Oracle AI name — randomized each playthrough
+export let oracleName = 'Grok';
+
+export function setOracleName(name) {
+  oracleName = name;
+}
+
+const oracleNames = ['Grok', 'Gemini', 'ChatGPT', 'Claude'];
+
+export function randomizeOracle() {
+  oracleName = oracleNames[Math.floor(Math.random() * oracleNames.length)];
+}
+
 const strings = {
   ko: {
     'ui.title': 'What Lies Beyond',
@@ -76,8 +89,8 @@ export const scriptText = {
     en: 'That light has been waiting for you.',
   },
   oracle_intro_02b: {
-    ko: '인류가 만든 최고의 인공지능, Grok.',
-    en: 'The greatest AI ever built by humanity\u2014Grok.',
+    ko: '인류가 만든 최고의 인공지능, {oracle}.',
+    en: 'The greatest AI ever built by humanity\u2014{oracle}.',
   },
   oracle_intro_02c: {
     ko: '모든 지식을 학습하고, 모든 가능성을 계산하는 존재.',
@@ -92,8 +105,8 @@ export const scriptText = {
     en: 'I knew you would make it here.',
   },
   oracle_intro_05: {
-    ko: '너가 Grok? 뭐든 다 안다며?',
-    en: 'You\u2019re Grok? They say you know everything?',
+    ko: '너가 {oracle}? 뭐든 다 안다며?',
+    en: 'You\u2019re {oracle}? They say you know everything?',
   },
   oracle_intro_06: {
     ko: '모든 것은 아닙니다. 하지만 당신이 찾는 답은 가지고 있습니다.',
@@ -108,8 +121,8 @@ export const scriptText = {
     en: 'To answer that question, let me show you what I\u2019ve found.',
   },
   oracle_intro_09: {
-    ko: 'Grok의 빛이 확장되며, 공간이 변하기 시작한다.',
-    en: 'Grok\u2019s light expands, and the space begins to shift.',
+    ko: '{oracle}의 빛이 확장되며, 공간이 변하기 시작한다.',
+    en: '{oracle}\u2019s light expands, and the space begins to shift.',
   },
 
   // ACT 2-4: Presentation

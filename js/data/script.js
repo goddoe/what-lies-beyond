@@ -1,6 +1,6 @@
 // script.js — All dialogue node data (~50 nodes)
 
-import { currentLang, scriptText, chatMessagesI18n } from './i18n.js';
+import { currentLang, scriptText, chatMessagesI18n, oracleName } from './i18n.js';
 
 export const scriptNodes = {
   // =====================================================
@@ -508,7 +508,11 @@ export function getNode(id) {
     localizedChat = (chatMessagesI18n[lang] ?? chatMessagesI18n.en) || node.chatMessages;
   }
 
-  return { ...node, text: localizedText, chatMessages: localizedChat };
+  // Substitute oracle name
+  const finalText = localizedText.replace(/\{oracle\}/g, oracleName);
+  const finalSpeaker = node.speakerName === 'Grok' ? oracleName : node.speakerName;
+
+  return { ...node, text: finalText, speakerName: finalSpeaker, chatMessages: localizedChat };
 }
 
 export function getNextNodeId(node) {

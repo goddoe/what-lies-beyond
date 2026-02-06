@@ -3,7 +3,7 @@
 import { initRenderer, clearScreen, getCtx } from './engine/renderer.js';
 import { initInput } from './engine/input.js';
 import { fadeIn, setFadeOpacity } from './engine/transition.js';
-import { setLang } from './data/i18n.js';
+import { setLang, randomizeOracle } from './data/i18n.js';
 
 // Scene imports
 import { OracleDialogueScene } from './scenes/oracle-dialogue.js';
@@ -96,6 +96,7 @@ async function boot() {
   // Wait for language selection
   const lang = await waitForLangSelect();
   setLang(lang);
+  randomizeOracle();
   document.getElementById('lang-select').style.display = 'none';
 
   // Start game loop
