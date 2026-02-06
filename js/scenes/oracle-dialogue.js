@@ -31,7 +31,7 @@ export class OracleDialogueScene {
       nodeChange: null,
       effects: null
     });
-    startDialogue('oracle_intro_01');
+    startDialogue('oracle_intro_02b');
   }
 
   update(dt) {

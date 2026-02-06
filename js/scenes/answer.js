@@ -1,6 +1,6 @@
 // answer.js — ACT 3-3: Fourth wall break, "97.6%"
 
-import { clearScreen, drawRect, drawText, drawCircle, getBaseSize, setAlpha, resetAlpha } from '../engine/renderer.js';
+import { clearScreen, getBaseSize, setAlpha, resetAlpha } from '../engine/renderer.js';
 import { startDialogue, updateDialogue, isDialogueActive, setDialogueCallbacks, cleanupDialogue } from '../systems/dialogue.js';
 import { loadScene } from '../main.js';
 import { fadeOut, fadeIn } from '../engine/transition.js';
@@ -11,8 +11,6 @@ export class AnswerScene {
     this.fourthWallBreak = false;
     this.breakTime = 0;
     this.eyeOpen = 0; // 0 to 1
-    this.haeunY = 0;
-    this.breathe = 0;
   }
 
   async init() {
@@ -36,7 +34,6 @@ export class AnswerScene {
 
   update(dt) {
     this.time += dt;
-    this.breathe = Math.sin(this.time * 1.5) * 1.5;
 
     if (this.fourthWallBreak) {
       this.breakTime += dt;
@@ -52,121 +49,101 @@ export class AnswerScene {
     clearScreen('#000000');
 
     const cx = w / 2;
-    const baseY = h / 2 + 15 + this.breathe;
+    const eyeY = h / 2 - 5;
 
-    // Haeun silhouette (larger, closer)
-    setAlpha(0.9);
-    this.drawHaeunClose(ctx, cx, baseY);
-    resetAlpha();
-
-    // Fourth wall break: eyes that look at player
+    // Eyes emerge from darkness
     if (this.fourthWallBreak) {
-      this.drawEyes(ctx, cx, baseY - 45, this.eyeOpen);
+      this.drawEyes(ctx, cx, eyeY, this.eyeOpen);
     }
-
-    // Subtle vignette
-    setAlpha(0.4);
-    const grad = ctx.createRadialGradient(cx, h / 2, 30, cx, h / 2, w / 2);
-    grad.addColorStop(0, 'rgba(0,0,0,0)');
-    grad.addColorStop(1, 'rgba(0,0,0,1)');
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
-    resetAlpha();
-  }
-
-  drawHaeunClose(ctx, cx, cy) {
-    // Head (oval, slightly larger)
-    ctx.fillStyle = 'rgba(160, 140, 130, 0.85)';
-    ctx.beginPath();
-    ctx.ellipse(cx, cy - 40, 13, 15, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Neck
-    ctx.fillStyle = 'rgba(150, 130, 120, 0.8)';
-    ctx.beginPath();
-    ctx.moveTo(cx - 4, cy - 26);
-    ctx.lineTo(cx + 4, cy - 26);
-    ctx.lineTo(cx + 3, cy - 22);
-    ctx.lineTo(cx - 3, cy - 22);
-    ctx.closePath();
-    ctx.fill();
-
-    // Body + shoulders (smooth curved torso)
-    ctx.fillStyle = 'rgba(100, 85, 75, 0.8)';
-    ctx.beginPath();
-    ctx.moveTo(cx - 4, cy - 23);
-    ctx.quadraticCurveTo(cx - 22, cy - 20, cx - 24, cy - 16);
-    ctx.quadraticCurveTo(cx - 25, cy - 10, cx - 18, cy + 14);
-    ctx.lineTo(cx + 18, cy + 14);
-    ctx.quadraticCurveTo(cx + 25, cy - 10, cx + 24, cy - 16);
-    ctx.quadraticCurveTo(cx + 22, cy - 20, cx + 4, cy - 23);
-    ctx.closePath();
-    ctx.fill();
-
-    // Hair top (fuller, curved)
-    ctx.fillStyle = 'rgba(35, 25, 20, 0.95)';
-    ctx.beginPath();
-    ctx.ellipse(cx, cy - 46, 15, 12, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Left hair strand (flowing to shoulder)
-    ctx.beginPath();
-    ctx.moveTo(cx - 13, cy - 44);
-    ctx.bezierCurveTo(cx - 19, cy - 34, cx - 21, cy - 20, cx - 18, cy - 8);
-    ctx.lineTo(cx - 13, cy - 10);
-    ctx.bezierCurveTo(cx - 15, cy - 22, cx - 14, cy - 34, cx - 10, cy - 40);
-    ctx.closePath();
-    ctx.fill();
-
-    // Right hair strand
-    ctx.beginPath();
-    ctx.moveTo(cx + 13, cy - 44);
-    ctx.bezierCurveTo(cx + 19, cy - 34, cx + 21, cy - 20, cx + 18, cy - 8);
-    ctx.lineTo(cx + 13, cy - 10);
-    ctx.bezierCurveTo(cx + 15, cy - 22, cx + 14, cy - 34, cx + 10, cy - 40);
-    ctx.closePath();
-    ctx.fill();
   }
 
   drawEyes(ctx, cx, eyeY, openAmount) {
     if (openAmount < 0.05) return;
 
-    const eyeSpacing = 7;
-    const eyeW = 5;
-    const eyeH = 3 * openAmount;
+    const sp = 20;  // eye spacing (wider — realistic proportion)
+    const eyeW = 18;
+    const eyeH = 9 * openAmount;
 
-    // Left eye (ellipse)
-    setAlpha(openAmount);
-    ctx.fillStyle = 'rgba(220, 200, 180, 0.9)';
-    ctx.beginPath();
-    ctx.ellipse(cx - eyeSpacing, eyeY, eyeW / 2, eyeH / 2, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Right eye (ellipse)
-    ctx.beginPath();
-    ctx.ellipse(cx + eyeSpacing, eyeY, eyeW / 2, eyeH / 2, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Pupils (look directly at camera = center)
+    // Outer ambient glow per eye (warmth from darkness)
     if (openAmount > 0.3) {
-      const pupilAlpha = (openAmount - 0.3) / 0.7;
-      setAlpha(pupilAlpha);
-      ctx.fillStyle = 'rgba(20, 15, 10, 0.95)';
-      ctx.beginPath();
-      ctx.arc(cx - eyeSpacing, eyeY, 1.2, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(cx + eyeSpacing, eyeY, 1.2, 0, Math.PI * 2);
-      ctx.fill();
+      const ambAlpha = (openAmount - 0.3) * 0.08;
+      for (const side of [-1, 1]) {
+        const ex = cx + side * sp;
+        const grad = ctx.createRadialGradient(ex, eyeY, 3, ex, eyeY, 28);
+        grad.addColorStop(0, `rgba(180, 160, 140, ${ambAlpha})`);
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(ex, eyeY, 28, 0, Math.PI * 2);
+        ctx.fill();
+      }
     }
 
-    // Subtle eye glow when fully open
-    if (openAmount > 0.8) {
-      const glowAlpha = (openAmount - 0.8) / 0.2 * 0.15;
-      setAlpha(glowAlpha);
-      drawCircle(cx - eyeSpacing, eyeY, 6, 'rgba(180, 200, 255, 0.3)');
-      drawCircle(cx + eyeSpacing, eyeY, 6, 'rgba(180, 200, 255, 0.3)');
+    for (const side of [-1, 1]) {
+      const ex = cx + side * sp;
+
+      // Sclera (eye white) — almond shape
+      setAlpha(openAmount * 0.95);
+      ctx.fillStyle = 'rgba(235, 228, 218, 0.92)';
+      ctx.beginPath();
+      ctx.moveTo(ex - eyeW / 2, eyeY);
+      ctx.quadraticCurveTo(ex, eyeY - eyeH / 2, ex + eyeW / 2, eyeY);
+      ctx.quadraticCurveTo(ex, eyeY + eyeH / 2 * 0.8, ex - eyeW / 2, eyeY);
+      ctx.closePath();
+      ctx.fill();
+
+      // Upper eyelid line (thicker, defines the eye)
+      if (openAmount > 0.15) {
+        setAlpha(openAmount * 0.9);
+        ctx.strokeStyle = 'rgba(35, 25, 20, 0.7)';
+        ctx.lineWidth = 1.0;
+        ctx.beginPath();
+        ctx.moveTo(ex - eyeW / 2, eyeY);
+        ctx.quadraticCurveTo(ex, eyeY - eyeH / 2, ex + eyeW / 2, eyeY);
+        ctx.stroke();
+
+        // Lower lid (softer)
+        ctx.strokeStyle = 'rgba(60, 45, 35, 0.3)';
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(ex - eyeW / 2, eyeY);
+        ctx.quadraticCurveTo(ex, eyeY + eyeH / 2 * 0.8, ex + eyeW / 2, eyeY);
+        ctx.stroke();
+      }
+
+      // Iris
+      if (openAmount > 0.25) {
+        const irisAlpha = Math.min(1, (openAmount - 0.25) / 0.5);
+        setAlpha(irisAlpha);
+
+        // Iris outer
+        const irisR = 4;
+        const irisGrad = ctx.createRadialGradient(ex, eyeY, 0, ex, eyeY, irisR);
+        irisGrad.addColorStop(0, 'rgba(60, 50, 40, 0.9)');
+        irisGrad.addColorStop(0.6, 'rgba(75, 60, 50, 0.8)');
+        irisGrad.addColorStop(1, 'rgba(90, 75, 60, 0.5)');
+        ctx.fillStyle = irisGrad;
+        ctx.beginPath();
+        ctx.arc(ex, eyeY, irisR, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Pupil
+        ctx.fillStyle = 'rgba(10, 8, 5, 0.95)';
+        ctx.beginPath();
+        ctx.arc(ex, eyeY, 2, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Catch light (tiny white reflection, top-right of pupil)
+        if (openAmount > 0.6) {
+          setAlpha((openAmount - 0.6) / 0.4);
+          ctx.fillStyle = 'rgba(255, 250, 240, 0.7)';
+          ctx.beginPath();
+          ctx.arc(ex + 1, eyeY - 1, 0.8, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
     }
+
     resetAlpha();
   }
 

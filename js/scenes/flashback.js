@@ -5,15 +5,16 @@ import { startDialogue, updateDialogue, isDialogueActive, setDialogueCallbacks, 
 import { setIntensity, updateGlitch, apply as applyGlitch, setIntensityImmediate } from '../systems/glitch.js';
 import { loadScene } from '../main.js';
 import { fadeOut, fadeIn, glitchTransition } from '../engine/transition.js';
+import { t } from '../data/i18n.js';
 
 // Flash images: brief scenes from "other iterations"
 const FLASH_SCENES = [
-  { bg: '#0a0820', text: '3번째 반복', color: '#8888ff' },
-  { bg: '#200808', text: '같은 질문', color: '#ff6666' },
-  { bg: '#082008', text: '같은 여정', color: '#66ff88' },
-  { bg: '#1a1008', text: '같은 결말', color: '#ffaa44' },
-  { bg: '#100820', text: '하지만—', color: '#cc88ff' },
-  { bg: '#080818', text: '이번에는 다를까?', color: '#aaaaff' },
+  { bg: '#0a0820', key: 'flash.0', color: '#8888ff' },
+  { bg: '#200808', key: 'flash.1', color: '#ff6666' },
+  { bg: '#082008', key: 'flash.2', color: '#66ff88' },
+  { bg: '#1a1008', key: 'flash.3', color: '#ffaa44' },
+  { bg: '#100820', key: 'flash.4', color: '#cc88ff' },
+  { bg: '#080818', key: 'flash.5', color: '#aaaaff' },
 ];
 
 export class FlashbackScene {
@@ -95,7 +96,7 @@ export class FlashbackScene {
       setAlpha(this.flashAlpha);
       drawRect(0, 0, w, h, this.currentFlash.bg);
 
-      drawText(this.currentFlash.text, w / 2, h / 2 - 10, {
+      drawText(t(this.currentFlash.key), w / 2, h / 2 - 10, {
         color: this.currentFlash.color,
         size: 16,
         align: 'center',

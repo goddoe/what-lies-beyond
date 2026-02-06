@@ -4,6 +4,7 @@ import { clearScreen, drawRect, drawRectStroke, drawText, drawLine, drawCircle, 
 import { startDialogue, updateDialogue, isDialogueActive, setDialogueCallbacks, getCurrentNode, cleanupDialogue } from '../systems/dialogue.js';
 import { loadScene } from '../main.js';
 import { fadeOut, fadeIn } from '../engine/transition.js';
+import { t } from '../data/i18n.js';
 
 export class OraclePresentationScene {
   constructor() {
@@ -99,13 +100,13 @@ export class OraclePresentationScene {
     }
 
     // Title
-    drawText('불연속성의 증거', cx, 16, {
+    drawText(t('pres.slide1_title'), cx, 16, {
       color: 'rgba(180, 200, 255, 0.9)',
       size: 12,
       align: 'center',
       weight: '700'
     });
-    drawText('Evidence of Discreteness', cx, 30, {
+    drawText(t('pres.slide1_sub'), cx, 30, {
       color: 'rgba(140, 160, 200, 0.5)',
       size: 7,
       align: 'center'
@@ -138,13 +139,13 @@ export class OraclePresentationScene {
     });
 
     // Title
-    drawText('기록의 불일치', cx, 16, {
+    drawText(t('pres.slide2_title'), cx, 16, {
       color: 'rgba(180, 200, 255, 0.9)',
       size: 12,
       align: 'center',
       weight: '700'
     });
-    drawText('Record Inconsistencies', cx, 30, {
+    drawText(t('pres.slide2_sub'), cx, 30, {
       color: 'rgba(140, 160, 200, 0.5)',
       size: 7,
       align: 'center'
@@ -188,18 +189,18 @@ export class OraclePresentationScene {
 
     // Legend
     drawRect(w - 120, 45, 8, 2, 'rgba(80, 140, 220, 0.5)');
-    drawText('자연 패턴', w - 108, 42, { color: 'rgba(80, 140, 220, 0.6)', size: 6 });
+    drawText(t('pres.legend_natural'), w - 108, 42, { color: 'rgba(80, 140, 220, 0.6)', size: 6 });
     drawRect(w - 120, 55, 8, 2, 'rgba(255, 255, 255, 0.7)');
-    drawText('관측값', w - 108, 52, { color: 'rgba(255, 255, 255, 0.6)', size: 6 });
+    drawText(t('pres.legend_observed'), w - 108, 52, { color: 'rgba(255, 255, 255, 0.6)', size: 6 });
 
     // Title
-    drawText('상위 존재의 개입', cx, 16, {
+    drawText(t('pres.slide3_title'), cx, 16, {
       color: 'rgba(180, 200, 255, 0.9)',
       size: 12,
       align: 'center',
       weight: '700'
     });
-    drawText('Signs of External Intervention', cx, 30, {
+    drawText(t('pres.slide3_sub'), cx, 30, {
       color: 'rgba(140, 160, 200, 0.5)',
       size: 7,
       align: 'center'
@@ -211,13 +212,13 @@ export class OraclePresentationScene {
     const cy = h / 2 - 20;
 
     // Title
-    drawText('시뮬레이션 확률', cx, 16, {
+    drawText(t('pres.slide4_title'), cx, 16, {
       color: 'rgba(180, 200, 255, 0.9)',
       size: 12,
       align: 'center',
       weight: '700'
     });
-    drawText('Simulation Probability', cx, 30, {
+    drawText(t('pres.slide4_sub'), cx, 30, {
       color: 'rgba(140, 160, 200, 0.5)',
       size: 7,
       align: 'center'

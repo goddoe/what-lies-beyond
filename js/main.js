@@ -3,6 +3,7 @@
 import { initRenderer, clearScreen, getCtx } from './engine/renderer.js';
 import { initInput } from './engine/input.js';
 import { fadeIn, setFadeOpacity } from './engine/transition.js';
+import { setLang } from './data/i18n.js';
 
 // Scene imports
 import { OracleDialogueScene } from './scenes/oracle-dialogue.js';
@@ -69,6 +70,17 @@ function gameLoop(timestamp) {
   requestAnimationFrame(gameLoop);
 }
 
+function waitForLangSelect() {
+  return new Promise((resolve) => {
+    const container = document.getElementById('lang-select');
+    container.querySelectorAll('button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        resolve(btn.dataset.lang);
+      }, { once: true });
+    });
+  });
+}
+
 async function boot() {
   // Wait for fonts
   await document.fonts.ready;
@@ -80,6 +92,11 @@ async function boot() {
 
   // Clear to black
   clearScreen('#000000');
+
+  // Wait for language selection
+  const lang = await waitForLangSelect();
+  setLang(lang);
+  document.getElementById('lang-select').style.display = 'none';
 
   // Start game loop
   running = true;

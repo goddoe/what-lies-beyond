@@ -37,7 +37,7 @@ function createWorldElements() {
 }
 
 // Data stream characters
-const DATA_CHARS = '01001101 10110010 11001001 01110110 HAEUN ERROR NULL VOID 97.6% SIM'.split(' ');
+const DATA_CHARS = '01001101 10110010 11001001 01110110 AVOLC ERROR NULL VOID 97.6% SIM'.split(' ');
 
 export class TruthScene {
   constructor() {
@@ -197,10 +197,10 @@ export class TruthScene {
       resetAlpha();
     }
 
-    // Haeun silhouette (always centered)
+    // Haeun — just eye hints emerging from darkness
     if (this.haeunVisible) {
       setAlpha(this.haeunAlpha);
-      this.drawHaeun(ctx, w / 2, h / 2 + 20);
+      this.drawEyeHints(ctx, w / 2, h / 2);
       resetAlpha();
     }
 
@@ -208,63 +208,23 @@ export class TruthScene {
     applyGlitch(ctx);
   }
 
-  drawHaeun(ctx, cx, cy) {
-    // Head (slightly oval)
-    ctx.fillStyle = 'rgba(180, 160, 150, 0.9)';
+  drawEyeHints(ctx, cx, cy) {
+    // Subtle ambient glow around eye area
+    const glowGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 12);
+    glowGrad.addColorStop(0, 'rgba(180, 170, 200, 0.06)');
+    glowGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+    ctx.fillStyle = glowGrad;
     ctx.beginPath();
-    ctx.ellipse(cx, cy - 28, 7.5, 8.5, 0, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 12, 0, Math.PI * 2);
     ctx.fill();
 
-    // Body (tapered torso with curves)
-    ctx.fillStyle = 'rgba(120, 100, 90, 0.8)';
+    // Two faint eye dots
+    ctx.fillStyle = 'rgba(200, 190, 180, 0.3)';
     ctx.beginPath();
-    ctx.moveTo(cx - 9, cy - 19);
-    ctx.quadraticCurveTo(cx - 10, cy - 8, cx - 6, cy + 5);
-    ctx.lineTo(cx + 6, cy + 5);
-    ctx.quadraticCurveTo(cx + 10, cy - 8, cx + 9, cy - 19);
-    ctx.closePath();
+    ctx.arc(cx - 4, cy, 1, 0, Math.PI * 2);
     ctx.fill();
-
-    // Legs (slightly tapered)
-    ctx.fillStyle = 'rgba(100, 80, 70, 0.7)';
     ctx.beginPath();
-    ctx.moveTo(cx - 6, cy + 5);
-    ctx.quadraticCurveTo(cx - 5, cy + 12, cx - 4, cy + 20);
-    ctx.lineTo(cx - 1, cy + 20);
-    ctx.lineTo(cx - 2, cy + 5);
-    ctx.closePath();
-    ctx.fill();
-
-    ctx.beginPath();
-    ctx.moveTo(cx + 2, cy + 5);
-    ctx.quadraticCurveTo(cx + 3, cy + 12, cx + 4, cy + 20);
-    ctx.lineTo(cx + 7, cy + 20);
-    ctx.quadraticCurveTo(cx + 6, cy + 12, cx + 6, cy + 5);
-    ctx.closePath();
-    ctx.fill();
-
-    // Hair (flowing curves over shoulders)
-    ctx.fillStyle = 'rgba(40, 30, 25, 0.9)';
-    ctx.beginPath();
-    ctx.ellipse(cx, cy - 32, 9, 7, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Left hair strand
-    ctx.beginPath();
-    ctx.moveTo(cx - 8, cy - 30);
-    ctx.bezierCurveTo(cx - 11, cy - 22, cx - 12, cy - 14, cx - 10, cy - 8);
-    ctx.lineTo(cx - 7, cy - 10);
-    ctx.bezierCurveTo(cx - 9, cy - 18, cx - 8, cy - 24, cx - 6, cy - 28);
-    ctx.closePath();
-    ctx.fill();
-
-    // Right hair strand
-    ctx.beginPath();
-    ctx.moveTo(cx + 8, cy - 30);
-    ctx.bezierCurveTo(cx + 11, cy - 22, cx + 12, cy - 14, cx + 10, cy - 8);
-    ctx.lineTo(cx + 7, cy - 10);
-    ctx.bezierCurveTo(cx + 9, cy - 18, cx + 8, cy - 24, cx + 6, cy - 28);
-    ctx.closePath();
+    ctx.arc(cx + 4, cy, 1, 0, Math.PI * 2);
     ctx.fill();
   }
 

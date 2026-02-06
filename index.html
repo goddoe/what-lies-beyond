@@ -1,17 +1,24 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <title>밖에는 무엇이 있나</title>
+  <title>What Lies Beyond</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Noto+Sans+JP:wght@300;400;700&family=Noto+Sans+SC:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div id="game-container">
+    <div id="lang-select">
+      <button data-lang="ko">한국어</button>
+      <button data-lang="en">English</button>
+      <button data-lang="ja">日本語</button>
+      <button data-lang="zh">中文</button>
+      <button data-lang="fr">Français</button>
+    </div>
     <div id="game-wrapper">
       <canvas id="game-canvas" width="384" height="216"></canvas>
     </div>
@@ -45,7 +52,7 @@
               <div id="chat-ui">
                 <div id="chat-header">
                   <span class="chat-avatar">●</span>
-                  <span class="chat-name">Claude</span>
+                  <span class="chat-name">HyperCLOVA X</span>
                 </div>
                 <div id="chat-messages"></div>
               </div>
@@ -57,8 +64,9 @@
     </div>
 
     <div id="title-card" class="hidden">
-      <div id="title-main">밖에는 무엇이 있나</div>
-      <div id="title-sub">What Lies Beyond</div>
+      <div id="title-main"></div>
+      <div id="title-sub"></div>
+      <div id="restart-btn" class="hidden"></div>
     </div>
   </div>
 

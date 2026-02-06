@@ -1,10 +1,11 @@
 // ending.js — ACT 4: Zoom-out → Phone → Chat → Hand Grip → Reaction → 3D Pickup → Title
 
-import { clearScreen, getBaseSize } from '../engine/renderer.js';
+import { clearScreen } from '../engine/renderer.js';
 import { loadScene, isMobile } from '../main.js';
 import { blockInput, unblockInput, onAdvance } from '../engine/input.js';
 import { getNode } from '../data/script.js';
 import { fadeIn, setFadeOpacity } from '../engine/transition.js';
+import { t, currentLang } from '../data/i18n.js';
 
 // Ending phases
 const PHASE = {
@@ -44,9 +45,9 @@ export class EndingScene {
     // Fade in from the previous scene's fadeOut
     await fadeIn(1500);
 
-    // Brief pause before zoom-out begins
+    // Brief pause then straight to phone
     await this.wait(1000);
-    this.startPhase(PHASE.ZOOM_OUT);
+    this.startPhase(PHASE.PHONE_APPEAR);
   }
 
   startPhase(phase) {
@@ -54,9 +55,6 @@ export class EndingScene {
     this.phaseTime = 0;
 
     switch (phase) {
-      case PHASE.ZOOM_OUT:
-        this.doZoomOut();
-        break;
       case PHASE.PHONE_APPEAR:
         this.doPhoneAppear();
         break;
@@ -84,15 +82,12 @@ export class EndingScene {
     }
   }
 
-  doZoomOut() {
-    const wrapper = document.getElementById('game-wrapper');
-    wrapper.style.transition = 'transform 3s cubic-bezier(0.25, 0.1, 0.25, 1)';
-    wrapper.style.transform = 'scale(0.35)';
-
-    setTimeout(() => this.startPhase(PHASE.PHONE_APPEAR), 3000);
-  }
-
   doPhoneAppear() {
+    // Hide canvas (no zoom-out, go straight to phone)
+    const canvas = document.getElementById('game-canvas');
+    canvas.style.opacity = '0';
+    canvas.style.transition = 'opacity 0.8s ease';
+
     const endingLayer = document.getElementById('ending-layer');
     endingLayer.classList.remove('hidden');
 
@@ -122,12 +117,7 @@ export class EndingScene {
   }
 
   doShowChat() {
-    // Hide canvas
-    const canvas = document.getElementById('game-canvas');
-    canvas.style.opacity = '0';
-    canvas.style.transition = 'opacity 0.5s ease';
-
-    // Show chat UI
+    // Show chat UI (canvas already hidden from phone appear phase)
     const chatUI = document.getElementById('chat-ui');
     chatUI.style.opacity = '1';
 
@@ -143,12 +133,30 @@ export class EndingScene {
       await this.wait(600);
 
       const el = document.createElement('div');
-      el.classList.add('chat-msg', msg.role === 'user' ? 'user' : 'assistant');
-      el.textContent = msg.text;
+      if (msg.role === 'search') {
+        el.classList.add('chat-msg', 'search');
+        el.innerHTML = `
+          <div class="search-label">${t('ui.searching')}</div>
+          <div class="search-sources">
+            <span class="search-icon grok">\uD835\uDD4F</span>
+            <span class="search-icon claude">\u25CF</span>
+            <span class="search-icon chatgpt">\u25C6</span>
+            <span class="search-icon gemini">\u2726</span>
+          </div>
+        `;
+      } else {
+        el.classList.add('chat-msg', msg.role === 'user' ? 'user' : 'assistant');
+        el.textContent = msg.text;
+      }
       container.appendChild(el);
 
       // Scroll to bottom
       container.scrollTop = container.scrollHeight;
+
+      // Extra pause after search turn (simulating life simulation)
+      if (msg.role === 'search') {
+        await this.wait(2000);
+      }
     }
 
     // Wait a moment after last message
@@ -176,7 +184,7 @@ export class EndingScene {
   doReaction() {
     const endingText = document.getElementById('ending-text');
     endingText.classList.remove('hidden');
-    endingText.textContent = '그렇구나.';
+    endingText.textContent = t('ui.reaction');
 
     setTimeout(() => {
       endingText.classList.add('visible');
@@ -220,15 +228,45 @@ export class EndingScene {
     const titleCard = document.getElementById('title-card');
     titleCard.classList.remove('hidden');
 
+    // Set localized title text
+    document.getElementById('title-main').textContent = t('ui.title');
+    const titleSub = document.getElementById('title-sub');
+    if (currentLang === 'ko') {
+      titleSub.textContent = t('ui.subtitle');
+      titleSub.style.display = '';
+    } else {
+      titleSub.textContent = '';
+      titleSub.style.display = 'none';
+    }
+
     setTimeout(() => {
       titleCard.classList.add('visible');
     }, 100);
 
-    // Allow click to... nothing. Just sit with the feeling.
     setTimeout(() => {
-      unblockInput();
       this.phase = PHASE.DONE;
+      unblockInput();
+
+      // Show restart button after 5 seconds
+      setTimeout(() => {
+        const restartBtn = document.getElementById('restart-btn');
+        restartBtn.textContent = t('ui.restart');
+        restartBtn.classList.remove('hidden');
+        requestAnimationFrame(() => restartBtn.classList.add('visible'));
+        restartBtn.style.pointerEvents = 'auto';
+        restartBtn.addEventListener('click', () => this.doRestart(), { once: true });
+      }, 5000);
     }, 4000);
+  }
+
+  async doRestart() {
+    const { fadeOut: fo, fadeIn: fi, setFadeOpacity: sfo } = await import('../engine/transition.js');
+    await fo(1500);
+    this.cleanup();
+    const { loadScene: ls } = await import('../main.js');
+    sfo(1);
+    await ls('oracle-dialogue');
+    await fi(1500);
   }
 
   wait(ms) {
@@ -240,31 +278,8 @@ export class EndingScene {
   }
 
   render(ctx) {
-    // During zoom-out phase, keep rendering black with haeun
     if (this.phase <= PHASE.SHOW_CHAT) {
-      const { w, h } = getBaseSize();
       clearScreen('#000000');
-
-      // Faint curved silhouette of haeun at center
-      if (this.phase <= PHASE.ZOOM_OUT) {
-        const cx = w / 2;
-        const cy = h / 2 + 10;
-
-        // Head (oval)
-        ctx.fillStyle = 'rgba(100, 85, 75, 0.5)';
-        ctx.beginPath();
-        ctx.ellipse(cx, cy - 28, 7, 8, 0, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Body (curved torso)
-        ctx.beginPath();
-        ctx.moveTo(cx - 8, cy - 19);
-        ctx.quadraticCurveTo(cx - 9, cy - 8, cx - 5, cy + 5);
-        ctx.lineTo(cx + 5, cy + 5);
-        ctx.quadraticCurveTo(cx + 9, cy - 8, cx + 8, cy - 19);
-        ctx.closePath();
-        ctx.fill();
-      }
     }
   }
 
@@ -306,6 +321,11 @@ export class EndingScene {
     const titleCard = document.getElementById('title-card');
     titleCard.classList.add('hidden');
     titleCard.classList.remove('visible');
+
+    const restartBtn = document.getElementById('restart-btn');
+    restartBtn.classList.add('hidden');
+    restartBtn.classList.remove('visible');
+    restartBtn.style.pointerEvents = '';
 
     const chatMessages = document.getElementById('chat-messages');
     chatMessages.innerHTML = '';
