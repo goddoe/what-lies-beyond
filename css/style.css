@@ -351,6 +351,22 @@ html, body {
 #restart-btn.visible { opacity: 1; }
 #restart-btn:hover { color: rgba(255,255,255,0.7); }
 
+#credit {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 12%;
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 1.5s ease, color 0.3s ease;
+  opacity: 0;
+  letter-spacing: 1px;
+}
+#credit.visible { opacity: 1; }
+#credit:hover { color: rgba(255,255,255,0.7); }
+
 /* ===== Language Select ===== */
 #lang-select {
   position: fixed;

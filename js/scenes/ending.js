@@ -247,7 +247,7 @@ export class EndingScene {
       this.phase = PHASE.DONE;
       unblockInput();
 
-      // Show restart button after 5 seconds
+      // Show restart button and credit after 5 seconds
       setTimeout(() => {
         const restartBtn = document.getElementById('restart-btn');
         restartBtn.textContent = t('ui.restart');
@@ -255,6 +255,10 @@ export class EndingScene {
         requestAnimationFrame(() => restartBtn.classList.add('visible'));
         restartBtn.style.pointerEvents = 'auto';
         restartBtn.addEventListener('click', () => this.doRestart(), { once: true });
+
+        const credit = document.getElementById('credit');
+        credit.classList.remove('hidden');
+        requestAnimationFrame(() => credit.classList.add('visible'));
       }, 5000);
     }, 4000);
   }
@@ -326,6 +330,10 @@ export class EndingScene {
     restartBtn.classList.add('hidden');
     restartBtn.classList.remove('visible');
     restartBtn.style.pointerEvents = '';
+
+    const credit = document.getElementById('credit');
+    credit.classList.add('hidden');
+    credit.classList.remove('visible');
 
     const chatMessages = document.getElementById('chat-messages');
     chatMessages.innerHTML = '';
