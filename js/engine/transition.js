@@ -48,16 +48,19 @@ export function glitchTransition(ms = 600) {
     function flash() {
       if (step >= totalSteps) {
         el.style.background = '#000';
+        el.style.boxShadow = 'none';
         el.style.opacity = '1';
         container.classList.remove('glitch-shake');
         setTimeout(resolve, 100);
         return;
       }
       el.style.transition = 'none';
+      el.style.background = '#000';
       if (step % 2 === 0) {
         el.style.opacity = '0.9';
-        el.style.background = step < 3 ? '#ff0040' : '#000';
+        el.style.boxShadow = step < 3 ? 'inset 0 0 0 100vmax #ff0040' : 'none';
       } else {
+        el.style.boxShadow = 'none';
         el.style.opacity = '0';
       }
       container.classList.add('glitch-shake');
