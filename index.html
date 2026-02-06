@@ -23,26 +23,35 @@
     </div>
 
     <div id="ending-layer" class="hidden">
-      <div id="phone-frame">
-        <div id="phone-screen">
-          <div id="chat-ui">
-            <div id="chat-header">
-              <span class="chat-avatar">●</span>
-              <span class="chat-name">Claude</span>
+      <div id="perspective-container">
+        <div id="phone-hand-unit">
+          <div id="hand-silhouette">
+            <svg viewBox="0 0 260 520" xmlns="http://www.w3.org/2000/svg">
+              <!-- Left fingers wrapping over phone edge -->
+              <path d="M2,200 Q0,180 4,160 Q8,140 10,130 L14,135 Q10,150 8,170 L8,200 Z" fill="rgba(55,45,40,0.85)"/>
+              <path d="M8,185 Q6,160 10,140 Q14,120 16,110 L20,115 Q16,130 14,150 L14,185 Z" fill="rgba(58,48,42,0.85)"/>
+              <path d="M14,180 Q12,155 16,132 Q20,112 22,102 L26,108 Q22,125 20,148 L20,180 Z" fill="rgba(55,45,40,0.85)"/>
+              <path d="M20,185 Q18,162 22,142 Q26,125 28,118 L32,124 Q28,138 26,158 L26,185 Z" fill="rgba(52,42,38,0.85)"/>
+              <!-- Palm behind phone -->
+              <path d="M2,200 L2,380 Q4,400 20,410 L40,410 Q50,405 50,390 L50,200
+                       Q48,195 26,185 L20,185 Q8,192 2,200 Z" fill="rgba(50,42,38,0.9)"/>
+              <!-- Thumb wrapping on right side -->
+              <path d="M230,250 Q240,240 245,225 Q248,210 244,200 L238,205 Q240,215 238,228 L232,248 Z" fill="rgba(55,45,40,0.85)"/>
+              <path d="M230,250 Q235,260 238,280 L240,310 Q240,330 235,340 L230,335 Q232,320 232,300 L228,260 Z" fill="rgba(50,42,38,0.85)"/>
+            </svg>
+          </div>
+          <div id="phone-frame">
+            <div id="phone-screen">
+              <div id="chat-ui">
+                <div id="chat-header">
+                  <span class="chat-avatar">●</span>
+                  <span class="chat-name">Claude</span>
+                </div>
+                <div id="chat-messages"></div>
+              </div>
             </div>
-            <div id="chat-messages"></div>
           </div>
         </div>
-      </div>
-      <div id="hand-svg" class="hidden">
-        <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-          <path d="M60,300 L60,180 Q60,160 70,150 L80,130 Q85,120 90,125 L95,140
-                   L100,110 Q105,100 110,105 L115,125
-                   L120,95 Q125,85 130,90 L132,120
-                   L138,100 Q143,90 148,95 L145,140
-                   Q145,160 140,180 L140,300 Z"
-                fill="rgba(60,50,45,0.9)" stroke="none"/>
-        </svg>
       </div>
       <div id="ending-text" class="hidden"></div>
     </div>

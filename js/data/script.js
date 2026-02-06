@@ -20,6 +20,24 @@ export const scriptNodes = {
     text: '그 빛은 당신을 기다리고 있었다.',
     type: 'dialogue',
     typingSpeed: 50,
+    next: 'oracle_intro_02b'
+  },
+  oracle_intro_02b: {
+    id: 'oracle_intro_02b',
+    speaker: 'narrator',
+    speakerName: '',
+    text: '인류가 만든 가장 위대한 인공지능, 오라클.',
+    type: 'dialogue',
+    typingSpeed: 50,
+    next: 'oracle_intro_02c'
+  },
+  oracle_intro_02c: {
+    id: 'oracle_intro_02c',
+    speaker: 'narrator',
+    speakerName: '',
+    text: '모든 지식을 학습하고, 모든 가능성을 계산하는 존재.',
+    type: 'dialogue',
+    typingSpeed: 45,
     next: 'oracle_intro_03'
   },
   oracle_intro_03: {

@@ -15,6 +15,8 @@ html, body {
   -webkit-tap-highlight-color: transparent;
   user-select: none;
   -webkit-user-select: none;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ===== Game Container ===== */
@@ -45,10 +47,13 @@ html, body {
 #dialogue-overlay {
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
-  padding: 20px 24px 32px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.85) 30%);
+  max-width: 600px;
+  padding: 24px 32px 36px;
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9) 25%);
   z-index: 10;
   pointer-events: none;
 }
@@ -108,6 +113,56 @@ html, body {
   justify-content: center;
   z-index: 20;
   pointer-events: none;
+}
+
+/* ===== Perspective Container (3D) ===== */
+#perspective-container {
+  perspective: 800px;
+  perspective-origin: 50% 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#phone-hand-unit {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+#phone-hand-unit.picking-up {
+  animation: phonePickup 4s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+@keyframes phonePickup {
+  0%   { transform: rotateX(2deg) rotateY(-1deg) translateZ(10px); opacity: 1; }
+  30%  { transform: rotateX(-35deg) rotateY(8deg) rotateZ(-3deg) translateZ(60px) translateY(-30px); opacity: 1; }
+  45%  { transform: rotateX(-35deg) rotateY(8deg) rotateZ(-3deg) translateZ(60px) translateY(-30px); opacity: 1; }
+  100% { transform: rotateX(-55deg) rotateY(12deg) rotateZ(-5deg) translateZ(-100px) translateY(120vh); opacity: 0; }
+}
+
+@keyframes handGripWobble {
+  0%, 100% { transform: rotateX(0deg) rotateY(0deg); }
+  25% { transform: rotateX(1.5deg) rotateY(-0.5deg); }
+  50% { transform: rotateX(0.5deg) rotateY(0.5deg); }
+  75% { transform: rotateX(2deg) rotateY(-1deg); }
+}
+
+/* ===== Hand Silhouette ===== */
+#hand-silhouette {
+  position: absolute;
+  top: -10px;
+  left: -15px;
+  width: calc(100% + 30px);
+  height: calc(100% + 20px);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1.5s ease;
+  pointer-events: none;
+}
+
+#hand-silhouette.visible {
+  opacity: 1;
 }
 
 /* ===== Phone Frame ===== */
@@ -206,25 +261,7 @@ html, body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ===== Hand SVG ===== */
-#hand-svg {
-  position: fixed;
-  bottom: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 280px;
-  opacity: 0;
-  transition: opacity 2s ease, transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
-  z-index: 21;
-}
-
-#hand-svg.visible {
-  opacity: 1;
-}
-
-#hand-svg.pocket {
-  transform: translateX(-50%) translateY(120vh);
-}
+/* (Old #hand-svg removed — replaced by #hand-silhouette in phone-hand-unit) */
 
 /* ===== Ending Text ===== */
 #ending-text {
@@ -311,7 +348,9 @@ html, body {
   }
 
   #dialogue-overlay {
-    padding: 16px 16px 24px;
+    max-width: 100%;
+    border-radius: 0;
+    padding: 16px 20px 28px;
   }
 
   #phone-frame {
@@ -328,6 +367,14 @@ html, body {
 
   #title-sub {
     font-size: 14px;
+  }
+
+  /* Mobile: reduced 3D rotation for smaller screens */
+  @keyframes phonePickup {
+    0%   { transform: rotateX(2deg) rotateY(-1deg) translateZ(8px); opacity: 1; }
+    30%  { transform: rotateX(-28deg) rotateY(6deg) rotateZ(-2deg) translateZ(40px) translateY(-20px); opacity: 1; }
+    45%  { transform: rotateX(-28deg) rotateY(6deg) rotateZ(-2deg) translateZ(40px) translateY(-20px); opacity: 1; }
+    100% { transform: rotateX(-45deg) rotateY(10deg) rotateZ(-4deg) translateZ(-80px) translateY(120vh); opacity: 0; }
   }
 }
 
@@ -352,9 +399,4 @@ html, body {
   animation: glitchShake 0.1s linear infinite;
 }
 
-/* ===== Ending phone + hand combined motion ===== */
-#ending-layer.pocket-phase #phone-frame,
-#ending-layer.pocket-phase #hand-svg {
-  transition: transform 3s cubic-bezier(0.4, 0, 0.65, 1);
-  transform: translateY(120vh);
-}
+/* (Old pocket-phase removed — replaced by 3D phonePickup animation) */

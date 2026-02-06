@@ -1,4 +1,4 @@
-// ending.js — ACT 4: Zoom-out → Phone → Chat → Hand → Pocket → Title
+// ending.js — ACT 4: Zoom-out → Phone → Chat → Hand Grip → Reaction → 3D Pickup → Title
 
 import { clearScreen, getBaseSize } from '../engine/renderer.js';
 import { loadScene, isMobile } from '../main.js';
@@ -13,9 +13,9 @@ const PHASE = {
   PHONE_APPEAR: 2,    // Phone frame fades in (1.5s)
   SHOW_CHAT: 3,       // Canvas hidden, chat UI appears
   CHAT_MESSAGES: 4,   // Chat messages appear one by one
-  HAND_APPEAR: 5,     // Hand fades in
+  HAND_GRIP: 5,       // Hand fades in + wobble
   REACTION: 6,        // "그렇구나." text
-  POCKET: 7,          // Phone+hand move down
+  PICKUP: 7,          // 3D tilt pickup animation
   FADE_BLACK: 8,      // Fade to black
   TITLE: 9,           // Show title
   DONE: 10
@@ -66,14 +66,14 @@ export class EndingScene {
       case PHASE.CHAT_MESSAGES:
         this.doChatMessages();
         break;
-      case PHASE.HAND_APPEAR:
-        this.doHandAppear();
+      case PHASE.HAND_GRIP:
+        this.doHandGrip();
         break;
       case PHASE.REACTION:
         this.doReaction();
         break;
-      case PHASE.POCKET:
-        this.doPocket();
+      case PHASE.PICKUP:
+        this.doPickup();
         break;
       case PHASE.FADE_BLACK:
         this.doFadeBlack();
@@ -96,12 +96,15 @@ export class EndingScene {
     const endingLayer = document.getElementById('ending-layer');
     endingLayer.classList.remove('hidden');
 
-    const phoneFrame = document.getElementById('phone-frame');
+    // Set mobile perspective
+    const perspectiveContainer = document.getElementById('perspective-container');
+    if (this.mobile) {
+      perspectiveContainer.style.perspective = '600px';
+    }
 
-    // Position phone so its screen area overlaps with the shrunken canvas
     this.positionPhone();
 
-    // Fade in phone
+    const phoneFrame = document.getElementById('phone-frame');
     setTimeout(() => {
       phoneFrame.style.opacity = '1';
     }, 50);
@@ -111,12 +114,6 @@ export class EndingScene {
 
   positionPhone() {
     const phoneFrame = document.getElementById('phone-frame');
-    const wrapper = document.getElementById('game-wrapper');
-    const canvas = document.getElementById('game-canvas');
-
-    // Phone is centered by flex layout of ending-layer
-    // Adjust phone size to frame the canvas
-    const canvasRect = canvas.getBoundingClientRect();
     const phoneWidth = this.mobile ? 180 : 240;
     const phoneHeight = phoneWidth * 2;
 
@@ -157,21 +154,21 @@ export class EndingScene {
     // Wait a moment after last message
     await this.wait(2000);
 
-    if (this.mobile) {
-      // On mobile: skip hand, go directly to reaction
-      this.startPhase(PHASE.REACTION);
-    } else {
-      this.startPhase(PHASE.HAND_APPEAR);
-    }
+    // Both mobile and desktop now show the hand
+    this.startPhase(PHASE.HAND_GRIP);
   }
 
-  doHandAppear() {
-    const hand = document.getElementById('hand-svg');
-    hand.classList.remove('hidden');
+  doHandGrip() {
+    const hand = document.getElementById('hand-silhouette');
+    const unit = document.getElementById('phone-hand-unit');
 
+    // Fade in the hand silhouette
     setTimeout(() => {
       hand.classList.add('visible');
     }, 50);
+
+    // Apply subtle wobble to indicate grip
+    unit.style.animation = 'handGripWobble 2s ease-in-out infinite';
 
     setTimeout(() => this.startPhase(PHASE.REACTION), 2500);
   }
@@ -188,25 +185,21 @@ export class EndingScene {
     // Wait for the weight of the moment
     setTimeout(() => {
       endingText.classList.remove('visible');
-      setTimeout(() => this.startPhase(PHASE.POCKET), 1000);
+      setTimeout(() => this.startPhase(PHASE.PICKUP), 1000);
     }, 3500);
   }
 
-  doPocket() {
-    const endingLayer = document.getElementById('ending-layer');
-    const phone = document.getElementById('phone-frame');
-    const hand = document.getElementById('hand-svg');
+  doPickup() {
+    const unit = document.getElementById('phone-hand-unit');
 
-    // Animate everything down
-    phone.style.transition = 'transform 3s cubic-bezier(0.4, 0, 0.65, 1)';
-    phone.style.transform = 'translateY(120vh)';
+    // Stop wobble, start 3D pickup animation
+    unit.style.animation = '';
+    // Force reflow so the class change triggers animation
+    void unit.offsetWidth;
+    unit.classList.add('picking-up');
 
-    if (!this.mobile && hand) {
-      hand.style.transition = 'transform 3s cubic-bezier(0.4, 0, 0.65, 1), opacity 2s ease';
-      hand.style.transform = 'translateX(-50%) translateY(120vh)';
-    }
-
-    setTimeout(() => this.startPhase(PHASE.FADE_BLACK), 2500);
+    // Animation is 4s, transition to fade black at 3.5s
+    setTimeout(() => this.startPhase(PHASE.FADE_BLACK), 3500);
   }
 
   doFadeBlack() {
@@ -252,17 +245,25 @@ export class EndingScene {
       const { w, h } = getBaseSize();
       clearScreen('#000000');
 
-      // Faint silhouette of haeun at center
+      // Faint curved silhouette of haeun at center
       if (this.phase <= PHASE.ZOOM_OUT) {
         const cx = w / 2;
         const cy = h / 2 + 10;
+
+        // Head (oval)
         ctx.fillStyle = 'rgba(100, 85, 75, 0.5)';
-        // Head
         ctx.beginPath();
-        ctx.arc(cx, cy - 28, 8, 0, Math.PI * 2);
+        ctx.ellipse(cx, cy - 28, 7, 8, 0, 0, Math.PI * 2);
         ctx.fill();
-        // Body
-        ctx.fillRect(cx - 8, cy - 20, 16, 25);
+
+        // Body (curved torso)
+        ctx.beginPath();
+        ctx.moveTo(cx - 8, cy - 19);
+        ctx.quadraticCurveTo(cx - 9, cy - 8, cx - 5, cy + 5);
+        ctx.lineTo(cx + 5, cy + 5);
+        ctx.quadraticCurveTo(cx + 9, cy - 8, cx + 8, cy - 19);
+        ctx.closePath();
+        ctx.fill();
       }
     }
   }
@@ -285,11 +286,18 @@ export class EndingScene {
     const phone = document.getElementById('phone-frame');
     phone.style.opacity = '0';
     phone.style.transform = '';
+    phone.style.width = '';
+    phone.style.height = '';
 
-    const hand = document.getElementById('hand-svg');
-    hand.classList.add('hidden');
+    const hand = document.getElementById('hand-silhouette');
     hand.classList.remove('visible');
-    hand.style.transform = '';
+
+    const unit = document.getElementById('phone-hand-unit');
+    unit.style.animation = '';
+    unit.classList.remove('picking-up');
+
+    const perspectiveContainer = document.getElementById('perspective-container');
+    perspectiveContainer.style.perspective = '';
 
     const endingText = document.getElementById('ending-text');
     endingText.classList.add('hidden');

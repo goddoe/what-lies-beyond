@@ -209,18 +209,63 @@ export class TruthScene {
   }
 
   drawHaeun(ctx, cx, cy) {
-    // Simple silhouette: head + body
-    // Head
-    drawCircle(cx, cy - 28, 8, 'rgba(180, 160, 150, 0.9)');
-    // Body
-    drawRect(cx - 8, cy - 20, 16, 25, 'rgba(120, 100, 90, 0.8)');
-    // Legs
-    drawRect(cx - 7, cy + 5, 5, 15, 'rgba(100, 80, 70, 0.7)');
-    drawRect(cx + 2, cy + 5, 5, 15, 'rgba(100, 80, 70, 0.7)');
-    // Hair
-    drawRect(cx - 9, cy - 34, 18, 10, 'rgba(40, 30, 25, 0.9)');
-    drawRect(cx - 10, cy - 28, 4, 12, 'rgba(40, 30, 25, 0.8)');
-    drawRect(cx + 6, cy - 28, 4, 12, 'rgba(40, 30, 25, 0.8)');
+    // Head (slightly oval)
+    ctx.fillStyle = 'rgba(180, 160, 150, 0.9)';
+    ctx.beginPath();
+    ctx.ellipse(cx, cy - 28, 7.5, 8.5, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Body (tapered torso with curves)
+    ctx.fillStyle = 'rgba(120, 100, 90, 0.8)';
+    ctx.beginPath();
+    ctx.moveTo(cx - 9, cy - 19);
+    ctx.quadraticCurveTo(cx - 10, cy - 8, cx - 6, cy + 5);
+    ctx.lineTo(cx + 6, cy + 5);
+    ctx.quadraticCurveTo(cx + 10, cy - 8, cx + 9, cy - 19);
+    ctx.closePath();
+    ctx.fill();
+
+    // Legs (slightly tapered)
+    ctx.fillStyle = 'rgba(100, 80, 70, 0.7)';
+    ctx.beginPath();
+    ctx.moveTo(cx - 6, cy + 5);
+    ctx.quadraticCurveTo(cx - 5, cy + 12, cx - 4, cy + 20);
+    ctx.lineTo(cx - 1, cy + 20);
+    ctx.lineTo(cx - 2, cy + 5);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.moveTo(cx + 2, cy + 5);
+    ctx.quadraticCurveTo(cx + 3, cy + 12, cx + 4, cy + 20);
+    ctx.lineTo(cx + 7, cy + 20);
+    ctx.quadraticCurveTo(cx + 6, cy + 12, cx + 6, cy + 5);
+    ctx.closePath();
+    ctx.fill();
+
+    // Hair (flowing curves over shoulders)
+    ctx.fillStyle = 'rgba(40, 30, 25, 0.9)';
+    ctx.beginPath();
+    ctx.ellipse(cx, cy - 32, 9, 7, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Left hair strand
+    ctx.beginPath();
+    ctx.moveTo(cx - 8, cy - 30);
+    ctx.bezierCurveTo(cx - 11, cy - 22, cx - 12, cy - 14, cx - 10, cy - 8);
+    ctx.lineTo(cx - 7, cy - 10);
+    ctx.bezierCurveTo(cx - 9, cy - 18, cx - 8, cy - 24, cx - 6, cy - 28);
+    ctx.closePath();
+    ctx.fill();
+
+    // Right hair strand
+    ctx.beginPath();
+    ctx.moveTo(cx + 8, cy - 30);
+    ctx.bezierCurveTo(cx + 11, cy - 22, cx + 12, cy - 14, cx + 10, cy - 8);
+    ctx.lineTo(cx + 7, cy - 10);
+    ctx.bezierCurveTo(cx + 9, cy - 18, cx + 8, cy - 24, cx + 6, cy - 28);
+    ctx.closePath();
+    ctx.fill();
   }
 
   cleanup() {

@@ -75,39 +75,89 @@ export class AnswerScene {
   }
 
   drawHaeunClose(ctx, cx, cy) {
-    // Larger silhouette for close-up
-    // Head
-    drawCircle(cx, cy - 40, 14, 'rgba(160, 140, 130, 0.85)');
-    // Hair
-    drawRect(cx - 16, cy - 52, 32, 16, 'rgba(35, 25, 20, 0.95)');
-    drawRect(cx - 18, cy - 40, 6, 22, 'rgba(35, 25, 20, 0.9)');
-    drawRect(cx + 12, cy - 40, 6, 22, 'rgba(35, 25, 20, 0.9)');
-    // Body
-    drawRect(cx - 14, cy - 26, 28, 40, 'rgba(100, 85, 75, 0.8)');
-    // Shoulders
-    drawRect(cx - 20, cy - 26, 8, 8, 'rgba(100, 85, 75, 0.6)');
-    drawRect(cx + 12, cy - 26, 8, 8, 'rgba(100, 85, 75, 0.6)');
+    // Head (oval, slightly larger)
+    ctx.fillStyle = 'rgba(160, 140, 130, 0.85)';
+    ctx.beginPath();
+    ctx.ellipse(cx, cy - 40, 13, 15, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Neck
+    ctx.fillStyle = 'rgba(150, 130, 120, 0.8)';
+    ctx.beginPath();
+    ctx.moveTo(cx - 4, cy - 26);
+    ctx.lineTo(cx + 4, cy - 26);
+    ctx.lineTo(cx + 3, cy - 22);
+    ctx.lineTo(cx - 3, cy - 22);
+    ctx.closePath();
+    ctx.fill();
+
+    // Body + shoulders (smooth curved torso)
+    ctx.fillStyle = 'rgba(100, 85, 75, 0.8)';
+    ctx.beginPath();
+    ctx.moveTo(cx - 4, cy - 23);
+    ctx.quadraticCurveTo(cx - 22, cy - 20, cx - 24, cy - 16);
+    ctx.quadraticCurveTo(cx - 25, cy - 10, cx - 18, cy + 14);
+    ctx.lineTo(cx + 18, cy + 14);
+    ctx.quadraticCurveTo(cx + 25, cy - 10, cx + 24, cy - 16);
+    ctx.quadraticCurveTo(cx + 22, cy - 20, cx + 4, cy - 23);
+    ctx.closePath();
+    ctx.fill();
+
+    // Hair top (fuller, curved)
+    ctx.fillStyle = 'rgba(35, 25, 20, 0.95)';
+    ctx.beginPath();
+    ctx.ellipse(cx, cy - 46, 15, 12, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Left hair strand (flowing to shoulder)
+    ctx.beginPath();
+    ctx.moveTo(cx - 13, cy - 44);
+    ctx.bezierCurveTo(cx - 19, cy - 34, cx - 21, cy - 20, cx - 18, cy - 8);
+    ctx.lineTo(cx - 13, cy - 10);
+    ctx.bezierCurveTo(cx - 15, cy - 22, cx - 14, cy - 34, cx - 10, cy - 40);
+    ctx.closePath();
+    ctx.fill();
+
+    // Right hair strand
+    ctx.beginPath();
+    ctx.moveTo(cx + 13, cy - 44);
+    ctx.bezierCurveTo(cx + 19, cy - 34, cx + 21, cy - 20, cx + 18, cy - 8);
+    ctx.lineTo(cx + 13, cy - 10);
+    ctx.bezierCurveTo(cx + 15, cy - 22, cx + 14, cy - 34, cx + 10, cy - 40);
+    ctx.closePath();
+    ctx.fill();
   }
 
   drawEyes(ctx, cx, eyeY, openAmount) {
     if (openAmount < 0.05) return;
 
     const eyeSpacing = 7;
-    const eyeW = 4;
-    const eyeH = 2.5 * openAmount;
+    const eyeW = 5;
+    const eyeH = 3 * openAmount;
 
-    // Left eye
+    // Left eye (ellipse)
     setAlpha(openAmount);
-    drawRect(cx - eyeSpacing - eyeW / 2, eyeY - eyeH / 2, eyeW, eyeH, 'rgba(220, 200, 180, 0.9)');
-    // Right eye
-    drawRect(cx + eyeSpacing - eyeW / 2, eyeY - eyeH / 2, eyeW, eyeH, 'rgba(220, 200, 180, 0.9)');
+    ctx.fillStyle = 'rgba(220, 200, 180, 0.9)';
+    ctx.beginPath();
+    ctx.ellipse(cx - eyeSpacing, eyeY, eyeW / 2, eyeH / 2, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Right eye (ellipse)
+    ctx.beginPath();
+    ctx.ellipse(cx + eyeSpacing, eyeY, eyeW / 2, eyeH / 2, 0, 0, Math.PI * 2);
+    ctx.fill();
 
     // Pupils (look directly at camera = center)
     if (openAmount > 0.3) {
       const pupilAlpha = (openAmount - 0.3) / 0.7;
       setAlpha(pupilAlpha);
-      drawRect(cx - eyeSpacing - 1, eyeY - 0.5, 2, 1, 'rgba(20, 15, 10, 0.95)');
-      drawRect(cx + eyeSpacing - 1, eyeY - 0.5, 2, 1, 'rgba(20, 15, 10, 0.95)');
+      ctx.fillStyle = 'rgba(20, 15, 10, 0.95)';
+      ctx.beginPath();
+      ctx.arc(cx - eyeSpacing, eyeY, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.arc(cx + eyeSpacing, eyeY, 1.2, 0, Math.PI * 2);
+      ctx.fill();
     }
 
     // Subtle eye glow when fully open
