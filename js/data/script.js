@@ -213,7 +213,7 @@ export const scriptNodes = {
     id: 'pres_reaction_01',
     speaker: 'haeun',
     speakerName: 'Avolc, H',
-    text: '92.0923%...',
+    text: '91.5573%...',
     type: 'dialogue',
     typingSpeed: 80,
     next: 'pres_reaction_02'
@@ -465,7 +465,7 @@ export const scriptNodes = {
     id: 'answer_06',
     speaker: 'haeun',
     speakerName: 'Avolc, H',
-    text: '92.0923%.',
+    text: '91.5573%.',
     type: 'dialogue',
     typingSpeed: 80,
     next: '__scene:ending'
@@ -485,7 +485,7 @@ export const scriptNodes = {
       { role: 'assistant', text: '흥미로운 질문이네요. 관련 정보를 검색해볼게요.' },
       { role: 'search', text: 'searching' },
       { role: 'assistant', text: '여러 물리학적 증거와 철학적 논증을 종합한 결과...' },
-      { role: 'assistant', text: '이 세계가 시뮬레이션일 확률은 92.0923%입니다.' }
+      { role: 'assistant', text: '이 세계가 시뮬레이션일 확률은 91.5573%입니다.' }
     ],
     next: null
   }

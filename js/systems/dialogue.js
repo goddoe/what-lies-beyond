@@ -73,7 +73,7 @@ function loadNode(node) {
   }
 
   textEl().textContent = '';
-  promptEl().classList.add('hidden');
+  promptEl().style.visibility = 'hidden';
 
   // Fire effects
   if (node.effects && onEffects) {
@@ -136,12 +136,12 @@ function onTypingDone() {
 
   // Standard: wait for input
   waitingForInput = true;
-  promptEl().classList.remove('hidden');
+  promptEl().style.visibility = 'visible';
 }
 
 function advanceToNext() {
   waitingForInput = false;
-  promptEl().classList.add('hidden');
+  promptEl().style.visibility = 'hidden';
 
   const nextId = getNextNodeId(currentNode);
   if (!nextId) {
