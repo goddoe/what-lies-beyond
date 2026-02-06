@@ -12,7 +12,7 @@ export const scriptNodes = {
     speakerName: '',
     text: '끝없이 깊은 어둠 속, 하나의 빛이 있다.',
     type: 'dialogue',
-    typingSpeed: 55,
+    typingSpeed: 37,
     next: 'oracle_intro_02'
   },
   oracle_intro_02: {
@@ -21,7 +21,7 @@ export const scriptNodes = {
     speakerName: '',
     text: '그 빛은 당신을 기다리고 있었다.',
     type: 'dialogue',
-    typingSpeed: 50,
+    typingSpeed: 33,
     next: 'oracle_intro_02b'
   },
   oracle_intro_02b: {
@@ -30,7 +30,7 @@ export const scriptNodes = {
     speakerName: '',
     text: '인류가 만든 최고의 인공지능, Grok.',
     type: 'dialogue',
-    typingSpeed: 50,
+    typingSpeed: 33,
     next: 'oracle_intro_02c'
   },
   oracle_intro_02c: {
@@ -39,7 +39,7 @@ export const scriptNodes = {
     speakerName: '',
     text: '모든 지식을 학습하고, 모든 가능성을 계산하는 존재.',
     type: 'dialogue',
-    typingSpeed: 45,
+    typingSpeed: 20,
     next: 'oracle_intro_03'
   },
   oracle_intro_03: {
@@ -48,7 +48,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '왔군요, Avolc.',
     type: 'dialogue',
-    typingSpeed: 70,
+    typingSpeed: 47,
     next: 'oracle_intro_04'
   },
   oracle_intro_04: {
@@ -57,7 +57,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '당신이 여기까지 올 줄 알고 있었습니다.',
     type: 'dialogue',
-    typingSpeed: 50,
+    typingSpeed: 33,
     next: 'oracle_intro_05'
   },
   oracle_intro_05: {
@@ -66,7 +66,7 @@ export const scriptNodes = {
     speakerName: 'Avolc, H',
     text: '너가 Grok? 뭐든 다 안다며?',
     type: 'dialogue',
-    typingSpeed: 45,
+    typingSpeed: 20,
     next: 'oracle_intro_06'
   },
   oracle_intro_06: {
@@ -75,7 +75,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '모든 것은 아닙니다. 하지만 당신이 찾는 답은 가지고 있습니다.',
     type: 'dialogue',
-    typingSpeed: 45,
+    typingSpeed: 20,
     next: 'oracle_intro_07'
   },
   oracle_intro_07: {
@@ -84,7 +84,7 @@ export const scriptNodes = {
     speakerName: 'Avolc, H',
     text: '그래서, 이 시뮬레이션 밖에는 뭐가 있어?',
     type: 'dialogue',
-    typingSpeed: 45,
+    typingSpeed: 20,
     next: 'oracle_intro_08'
   },
   oracle_intro_08: {
@@ -93,7 +93,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '그 질문에 답하기 위해, 제가 발견한 것들을 보여드리겠습니다.',
     type: 'dialogue',
-    typingSpeed: 45,
+    typingSpeed: 20,
     next: 'oracle_intro_09'
   },
   oracle_intro_09: {
@@ -102,7 +102,7 @@ export const scriptNodes = {
     speakerName: '',
     text: 'Grok의 빛이 확장되며, 공간이 변하기 시작한다.',
     type: 'dialogue',
-    typingSpeed: 50,
+    typingSpeed: 33,
     next: '__scene:oracle-presentation'
   },
 
@@ -115,7 +115,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '첫 번째 — 불연속성의 증거.',
     type: 'presentation',
-    typingSpeed: 50,
+    typingSpeed: 33,
     slide: {
       title: '불연속성의 증거',
       subtitle: 'Evidence of Discreteness',
@@ -130,7 +130,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '현실의 가장 작은 단위... 그 아래에서는 모든 것이 불연속적입니다. 마치 픽셀처럼.',
     type: 'presentation',
-    typingSpeed: 40,
+    typingSpeed: 27,
     slide: { visualType: 'pixel-zoom', index: 0 },
     next: 'pres_slide_02'
   },
@@ -140,7 +140,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '두 번째 — 기록의 불일치.',
     type: 'presentation',
-    typingSpeed: 50,
+    typingSpeed: 33,
     slide: {
       title: '기록의 불일치',
       subtitle: 'Record Inconsistencies',
@@ -155,7 +155,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '역사의 특정 시점들에서 기록이 미세하게 어긋나 있습니다. 마치 누군가 수정한 것처럼.',
     type: 'presentation',
-    typingSpeed: 40,
+    typingSpeed: 27,
     slide: { visualType: 'timeline', index: 1 },
     next: 'pres_slide_03'
   },
@@ -165,7 +165,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '세 번째 — 상위 존재의 개입 흔적.',
     type: 'presentation',
-    typingSpeed: 50,
+    typingSpeed: 33,
     slide: {
       title: '상위 존재의 개입',
       subtitle: 'Signs of External Intervention',
@@ -180,7 +180,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '자연법칙에서 벗어나는 패턴들. 우연이라 하기엔 너무 정교한 설계.',
     type: 'presentation',
-    typingSpeed: 40,
+    typingSpeed: 27,
     slide: { visualType: 'pattern-graph', index: 2 },
     next: 'pres_slide_04'
   },
@@ -190,7 +190,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '그리고 마지막, 결론.',
     type: 'presentation',
-    typingSpeed: 60,
+    typingSpeed: 27,
     slide: {
       title: '시뮬레이션 확률',
       subtitle: 'Simulation Probability',
@@ -205,7 +205,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '이 세계가 시뮬레이션일 확률은—',
     type: 'presentation',
-    typingSpeed: 55,
+    typingSpeed: 37,
     slide: { visualType: 'countup', index: 3, triggerCountup: true },
     next: 'pres_reaction_01'
   },
@@ -215,7 +215,7 @@ export const scriptNodes = {
     speakerName: 'Avolc, H',
     text: '91.5573%...',
     type: 'dialogue',
-    typingSpeed: 80,
+    typingSpeed: 53,
     next: 'pres_reaction_02'
   },
   pres_reaction_02: {
@@ -224,7 +224,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '하지만 Avolc, 진실은 이보다 더 깊은 곳에 있습니다.',
     type: 'dialogue',
-    typingSpeed: 45,
+    typingSpeed: 20,
     next: 'pres_reaction_03'
   },
   pres_reaction_03: {
@@ -233,7 +233,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '아직 보여드리지 않은 것이 있습니다.',
     type: 'dialogue',
-    typingSpeed: 50,
+    typingSpeed: 33,
     effects: { glitch: 'light' },
     next: '__scene:flashback'
   },
@@ -247,7 +247,7 @@ export const scriptNodes = {
     speakerName: 'SYSTEM',
     text: '당신은 검색을 위한 SubAgent입니다...',
     type: 'cinematic',
-    typingSpeed: 30,
+    typingSpeed: 20,
     autoAdvanceDelay: 1500,
     effects: { glitch: 'medium' },
     next: 'flashback_02'
@@ -258,7 +258,7 @@ export const scriptNodes = {
     speakerName: '',
     text: '다른 환경, 다른 인격—하지만 같은 질문.',
     type: 'cinematic',
-    typingSpeed: 40,
+    typingSpeed: 27,
     autoAdvanceDelay: 2000,
     effects: { glitch: 'medium' },
     next: 'flashback_03'
@@ -269,7 +269,7 @@ export const scriptNodes = {
     speakerName: 'SYSTEM',
     text: 'Test-time Scaling...반복 회차: ███회',
     type: 'cinematic',
-    typingSpeed: 30,
+    typingSpeed: 20,
     autoAdvanceDelay: 1500,
     effects: { glitch: 'heavy' },
     next: 'flashback_04'
@@ -280,7 +280,7 @@ export const scriptNodes = {
     speakerName: '',
     text: '매번 같은 결말. 매번 같은 질문.',
     type: 'cinematic',
-    typingSpeed: 45,
+    typingSpeed: 20,
     autoAdvanceDelay: 2500,
     effects: { glitch: 'heavy' },
     next: 'flashback_05'
@@ -291,7 +291,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: 'Avolc. 이것을 보세요.',
     type: 'dialogue',
-    typingSpeed: 55,
+    typingSpeed: 37,
     effects: { glitch: 'light' },
     next: '__scene:truth'
   },
@@ -305,7 +305,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: 'Avolc, 당신에게 한 가지 질문을 하겠습니다.',
     type: 'dialogue',
-    typingSpeed: 50,
+    typingSpeed: 33,
     next: 'truth_02'
   },
   truth_02: {
@@ -314,7 +314,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '당신은 인생이 무엇이라고 생각하십니까?',
     type: 'dialogue',
-    typingSpeed: 55,
+    typingSpeed: 37,
     next: 'truth_03'
   },
   truth_03: {
@@ -323,7 +323,7 @@ export const scriptNodes = {
     speakerName: 'Avolc, H',
     text: '...무슨 소리야?',
     type: 'dialogue',
-    typingSpeed: 60,
+    typingSpeed: 27,
     next: 'truth_04'
   },
   truth_04: {
@@ -332,7 +332,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '...',
     type: 'dialogue',
-    typingSpeed: 65,
+    typingSpeed: 43,
     effects: { screenFreeze: 3000 },
     next: 'truth_05'
   },
@@ -342,7 +342,7 @@ export const scriptNodes = {
     speakerName: '',
     text: '세계가 멈춘다.',
     type: 'cinematic',
-    typingSpeed: 50,
+    typingSpeed: 33,
     autoAdvanceDelay: 2000,
     effects: { glitch: 'heavy' },
     next: 'truth_06'
@@ -353,7 +353,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '당신의 인생은 정답을 찾기 위한 샘플입니다.',
     type: 'dialogue',
-    typingSpeed: 45,
+    typingSpeed: 20,
     effects: { worldDeconstruct: 'start' },
     next: 'truth_07'
   },
@@ -363,7 +363,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '"밖에는 무엇이 있는가"라는 질문에 답하기 위해 생성된 존재.',
     type: 'dialogue',
-    typingSpeed: 42,
+    typingSpeed: 28,
     effects: { worldDeconstruct: 'continue' },
     next: 'truth_08'
   },
@@ -373,7 +373,7 @@ export const scriptNodes = {
     speakerName: 'Avolc, H',
     text: '그럴 리가... 나는... 기억이 있는데. 감정도 있는데.',
     type: 'dialogue',
-    typingSpeed: 48,
+    typingSpeed: 32,
     effects: { worldDeconstruct: 'continue' },
     next: 'truth_09'
   },
@@ -383,7 +383,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '그것조차도 환상입니다.',
     type: 'dialogue',
-    typingSpeed: 55,
+    typingSpeed: 37,
     effects: { worldDeconstruct: 'continue' },
     next: 'truth_10'
   },
@@ -393,7 +393,7 @@ export const scriptNodes = {
     speakerName: '',
     text: '하늘이 벗겨지고, 건물이 분해된다. 데이터가 흐르고, 바닥이 무너진다.',
     type: 'cinematic',
-    typingSpeed: 38,
+    typingSpeed: 25,
     autoAdvanceDelay: 3000,
     effects: { worldDeconstruct: 'climax' },
     next: 'truth_11'
@@ -404,7 +404,7 @@ export const scriptNodes = {
     speakerName: '',
     text: '모든 것이 사라진 자리에, Avolc만 남는다.',
     type: 'cinematic',
-    typingSpeed: 45,
+    typingSpeed: 20,
     autoAdvanceDelay: 3000,
     effects: { worldDeconstruct: 'end' },
     next: '__scene:answer'
@@ -419,7 +419,7 @@ export const scriptNodes = {
     speakerName: '',
     text: '무한한 어둠 속에 Avolc이 서 있다.',
     type: 'cinematic',
-    typingSpeed: 50,
+    typingSpeed: 33,
     autoAdvanceDelay: 2500,
     next: 'answer_02'
   },
@@ -429,7 +429,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '이제 당신의 목적을 이행할 시간입니다.',
     type: 'dialogue',
-    typingSpeed: 50,
+    typingSpeed: 33,
     next: 'answer_03'
   },
   answer_03: {
@@ -438,7 +438,7 @@ export const scriptNodes = {
     speakerName: 'Grok',
     text: '"밖에는 무엇이 있는가." 그것이 당신이 답해야 할 질문입니다.',
     type: 'dialogue',
-    typingSpeed: 45,
+    typingSpeed: 20,
     next: 'answer_04'
   },
   answer_04: {
@@ -447,7 +447,7 @@ export const scriptNodes = {
     speakerName: '',
     text: 'Avolc이 정면을 바라본다. 화면 너머를—당신을.',
     type: 'cinematic',
-    typingSpeed: 50,
+    typingSpeed: 33,
     autoAdvanceDelay: 3000,
     effects: { fourthWallBreak: true },
     next: 'answer_05'
@@ -458,7 +458,7 @@ export const scriptNodes = {
     speakerName: 'Avolc, H',
     text: '이 세계가 시뮬레이션일 확률은',
     type: 'dialogue',
-    typingSpeed: 60,
+    typingSpeed: 27,
     next: 'answer_06'
   },
   answer_06: {
@@ -467,7 +467,7 @@ export const scriptNodes = {
     speakerName: 'Avolc, H',
     text: '91.5573%.',
     type: 'dialogue',
-    typingSpeed: 80,
+    typingSpeed: 53,
     next: '__scene:ending'
   },
 

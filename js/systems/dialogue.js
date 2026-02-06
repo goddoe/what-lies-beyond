@@ -13,7 +13,7 @@ let displayedText = '';
 let fullText = '';
 let charIndex = 0;
 let typingTimer = 0;
-let typingSpeed = 50; // ms per char
+let typingSpeed = 33; // ms per char
 let typingComplete = false;
 let waitingForInput = false;
 let autoAdvanceTimer = 0;
@@ -50,7 +50,7 @@ function loadNode(node) {
   displayedText = '';
   charIndex = 0;
   typingTimer = 0;
-  typingSpeed = node.typingSpeed || 50;
+  typingSpeed = node.typingSpeed || 33;
   typingComplete = false;
   waitingForInput = false;
   autoAdvanceTimer = 0;

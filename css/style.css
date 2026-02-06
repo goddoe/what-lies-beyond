@@ -74,7 +74,8 @@ html, body {
   color: #e8e8e8;
   line-height: 1.7;
   min-height: 54px;
-  word-break: keep-all;
+  word-break: normal;
+  overflow-wrap: break-word;
 }
 
 #dialogue-prompt {
@@ -240,7 +241,8 @@ html, body {
   border-radius: 12px;
   font-size: 12px;
   line-height: 1.5;
-  word-break: keep-all;
+  word-break: normal;
+  overflow-wrap: break-word;
   opacity: 0;
   animation: chatFadeIn 0.3s ease forwards;
 }
