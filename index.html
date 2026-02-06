@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>밖에는 무엇이 있나</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="game-container">
+    <div id="game-wrapper">
+      <canvas id="game-canvas" width="384" height="216"></canvas>
+    </div>
+
+    <div id="dialogue-overlay" class="hidden">
+      <div id="dialogue-speaker"></div>
+      <div id="dialogue-text"></div>
+      <div id="dialogue-prompt" class="hidden">▼</div>
+    </div>
+
+    <div id="ending-layer" class="hidden">
+      <div id="phone-frame">
+        <div id="phone-screen">
+          <div id="chat-ui">
+            <div id="chat-header">
+              <span class="chat-avatar">●</span>
+              <span class="chat-name">Claude</span>
+            </div>
+            <div id="chat-messages"></div>
+          </div>
+        </div>
+      </div>
+      <div id="hand-svg" class="hidden">
+        <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+          <path d="M60,300 L60,180 Q60,160 70,150 L80,130 Q85,120 90,125 L95,140
+                   L100,110 Q105,100 110,105 L115,125
+                   L120,95 Q125,85 130,90 L132,120
+                   L138,100 Q143,90 148,95 L145,140
+                   Q145,160 140,180 L140,300 Z"
+                fill="rgba(60,50,45,0.9)" stroke="none"/>
+        </svg>
+      </div>
+      <div id="ending-text" class="hidden"></div>
+    </div>
+
+    <div id="title-card" class="hidden">
+      <div id="title-main">밖에는 무엇이 있나</div>
+      <div id="title-sub">What Lies Beyond</div>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
