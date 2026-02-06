@@ -499,13 +499,13 @@ export function getNode(id) {
   const translation = scriptText[id];
   const lang = currentLang;
   const localizedText = translation
-    ? (translation[lang] ?? translation.en ?? node.text)
+    ? (translation[lang] || translation.en || node.text)
     : node.text;
 
   // Localize chatMessages if present
   let localizedChat = node.chatMessages;
   if (node.chatMessages) {
-    localizedChat = (chatMessagesI18n[lang] ?? chatMessagesI18n.en) || node.chatMessages;
+    localizedChat = (chatMessagesI18n[lang] || chatMessagesI18n.en) || node.chatMessages;
   }
 
   // Substitute oracle name

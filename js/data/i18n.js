@@ -70,8 +70,8 @@ const strings = {
 
 export function t(key) {
   return (strings[currentLang] && strings[currentLang][key])
-    ?? strings.en[key]
-    ?? key;
+    || strings.en[key]
+    || key;
 }
 
 // ---------------------------------------------------------------------------

@@ -13,8 +13,9 @@ html, body {
   font-family: 'Noto Sans KR', 'Noto Sans JP', 'Noto Sans SC', sans-serif;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-  user-select: none;
   -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   overscroll-behavior: none;
   -webkit-overflow-scrolling: touch;
 }
@@ -39,8 +40,9 @@ html, body {
 
 #game-canvas {
   display: block;
-  image-rendering: pixelated;
+  image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 /* ===== Dialogue Overlay ===== */
@@ -210,7 +212,6 @@ html, body {
 #chat-header {
   display: flex;
   align-items: center;
-  gap: 8px;
   padding: 10px 12px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
   font-size: 13px;
@@ -220,6 +221,7 @@ html, body {
 .chat-avatar {
   color: #06cf68;
   font-size: 16px;
+  margin-right: 8px;
 }
 
 #chat-messages {
@@ -227,12 +229,12 @@ html, body {
   padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
   overflow-y: auto;
 }
 
 .chat-msg {
   max-width: 85%;
+  margin-bottom: 8px;
   padding: 8px 12px;
   border-radius: 12px;
   font-size: 12px;
@@ -269,7 +271,8 @@ html, body {
   align-self: center;
 }
 .search-label { font-size: 10px; color: #888; margin-bottom: 6px; }
-.search-sources { display: flex; gap: 8px; justify-content: center; }
+.search-sources { display: flex; justify-content: center; }
+.search-icon + .search-icon { margin-left: 8px; }
 .search-icon {
   width: 20px; height: 20px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
@@ -379,11 +382,11 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
   z-index: 60;
 }
 
 #lang-select button {
+  margin: 10px 0;
   background: transparent;
   border: none;
   color: rgba(255, 255, 255, 0.6);
