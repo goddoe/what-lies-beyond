@@ -1,4 +1,4 @@
-// oracle-presentation.js — ACT 2-4: 4 slides + 97.6% countup
+// oracle-presentation.js — ACT 2-4: 4 slides + 92.0923% countup
 
 import { clearScreen, drawRect, drawRectStroke, drawText, drawLine, drawCircle, getBaseSize, setAlpha, resetAlpha, drawGradientRect } from '../engine/renderer.js';
 import { startDialogue, updateDialogue, isDialogueActive, setDialogueCallbacks, getCurrentNode, cleanupDialogue } from '../systems/dialogue.js';
@@ -45,9 +45,9 @@ export class OraclePresentationScene {
 
     // Countup animation (easeOutExpo)
     if (this.countupActive && !this.countupDone) {
-      this.countupValue += dt * 35; // Takes ~3s to reach 97.6
-      if (this.countupValue >= 97.6) {
-        this.countupValue = 97.6;
+      this.countupValue += dt * 33; // Takes ~3s to reach 92.0923
+      if (this.countupValue >= 92.0923) {
+        this.countupValue = 92.0923;
         this.countupDone = true;
       }
     }
@@ -225,7 +225,9 @@ export class OraclePresentationScene {
     });
 
     // Big number
-    const displayVal = this.countupActive ? this.countupValue.toFixed(1) : '0.0';
+    const displayVal = this.countupActive
+      ? (this.countupDone ? this.countupValue.toFixed(4) : this.countupValue.toFixed(1))
+      : '0.0';
     const numColor = this.countupDone ? 'rgba(255, 100, 100, 1)' : 'rgba(200, 220, 255, 0.95)';
 
     drawText(`${displayVal}%`, cx, cy, {

@@ -159,8 +159,8 @@ export const scriptText = {
     en: 'The probability that this world is a simulation\u2014',
   },
   pres_reaction_01: {
-    ko: '97.6%...',
-    en: '97.6%\u2026',
+    ko: '92.0923%...',
+    en: '92.0923%\u2026',
   },
   pres_reaction_02: {
     ko: '하지만 Avolc, 진실은 이보다 더 깊은 곳에 있습니다.',
@@ -261,8 +261,8 @@ export const scriptText = {
     en: 'The probability that this world is a simulation is',
   },
   answer_06: {
-    ko: '97.6%.',
-    en: '97.6%.',
+    ko: '92.0923%.',
+    en: '92.0923%.',
   },
 };
 
@@ -275,13 +275,13 @@ export const chatMessagesI18n = {
     { role: 'assistant', text: '흥미로운 질문이네요. 관련 정보를 검색해볼게요.' },
     { role: 'search', text: 'searching' },
     { role: 'assistant', text: '여러 물리학적 증거와 철학적 논증을 종합한 결과...' },
-    { role: 'assistant', text: '이 세계가 시뮬레이션일 확률은 97.6%입니다.' },
+    { role: 'assistant', text: '이 세계가 시뮬레이션일 확률은 92.0923%입니다.' },
   ],
   en: [
     { role: 'user', text: 'What lies beyond this simulation?' },
     { role: 'assistant', text: 'Interesting question. Let me search for relevant information.' },
     { role: 'search', text: 'searching' },
     { role: 'assistant', text: 'After synthesizing various physical evidence and philosophical arguments\u2026' },
-    { role: 'assistant', text: 'The probability that this world is a simulation is 97.6%.' },
+    { role: 'assistant', text: 'The probability that this world is a simulation is 92.0923%.' },
   ],
 };
