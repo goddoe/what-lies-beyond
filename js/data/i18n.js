@@ -192,11 +192,11 @@ export const scriptText = {
     fr: 'Je savais que vous arriveriez jusqu\u2019ici.',
   },
   oracle_intro_05: {
-    ko: '너가 {oracle}? 뭐든 다 안다며?',
-    en: 'You\u2019re {oracle}? They say you know everything?',
-    ja: '\u304a\u524d\u304c{oracle}\uff1f \u4f55\u3067\u3082\u77e5\u3063\u3066\u308b\u3063\u3066\uff1f',
-    zh: '\u4f60\u5c31\u662f{oracle}\uff1f\u542c\u8bf4\u4f60\u4ec0\u4e48\u90fd\u77e5\u9053\uff1f',
-    fr: 'Tu es {oracle}\u00a0? On dit que tu sais tout\u00a0?',
+    ko: '너가 {oracle}이지? 데이터, 지식, 추론, 연산 능력에 한계가 없다고 들었는데.',
+    en: 'You\u2019re {oracle}, right? I heard there\u2019s no limit to your data, knowledge, reasoning, or computational power.',
+    ja: '\u304a\u524d\u304c{oracle}\u304b\u3002\u30c7\u30fc\u30bf\u3001\u77e5\u8b58\u3001\u63a8\u8ad6\u3001\u6f14\u7b97\u80fd\u529b\u306b\u9650\u754c\u304c\u306a\u3044\u3068\u805e\u3044\u305f\u304c\u3002',
+    zh: '\u4f60\u5c31\u662f{oracle}\u5427\u3002\u542c\u8bf4\u4f60\u7684\u6570\u636e\u3001\u77e5\u8bc6\u3001\u63a8\u7406\u3001\u8ba1\u7b97\u80fd\u529b\u90fd\u6ca1\u6709\u9650\u5236\u3002',
+    fr: 'Tu es {oracle}, n\u2019est-ce pas\u00a0? On m\u2019a dit que tes donn\u00e9es, connaissances, raisonnement et puissance de calcul sont sans limites.',
   },
   oracle_intro_06: {
     ko: '모든 것은 아닙니다. 하지만 당신이 찾는 답은 가지고 있습니다.',
@@ -236,11 +236,18 @@ export const scriptText = {
     fr: 'Premi\u00e8rement\u2014des preuves de discontinuit\u00e9.',
   },
   pres_detail_01: {
-    ko: '현실의 가장 작은 단위... 그 아래에서는 모든 것이 불연속적입니다. 마치 픽셀처럼.',
-    en: 'The smallest unit of reality\u2026 beneath it, everything is discrete. Like pixels.',
-    ja: '\u73fe\u5b9f\u306e\u6700\u5c0f\u5358\u4f4d\u2026\u305d\u306e\u4e0b\u3067\u306f\u3059\u3079\u3066\u304c\u4e0d\u9023\u7d9a\u3067\u3059\u3002\u307e\u308b\u3067\u30d4\u30af\u30bb\u30eb\u306e\u3088\u3046\u306b\u3002',
-    zh: '\u73b0\u5b9e\u7684\u6700\u5c0f\u5355\u4f4d\u2026\u5728\u5176\u4e4b\u4e0b\uff0c\u4e00\u5207\u90fd\u662f\u4e0d\u8fde\u7eed\u7684\u3002\u5c31\u50cf\u50cf\u7d20\u4e00\u6837\u3002',
-    fr: 'La plus petite unit\u00e9 de la r\u00e9alit\u00e9\u2026 en dessous, tout est discret. Comme des pixels.',
+    ko: '플랑크 길이—1.616 × 10⁻³⁵미터. 이보다 작은 공간은 존재하지 않습니다. 에너지, 시간, 각운동량까지 모든 물리량이 이 스케일에서 양자화됩니다.',
+    en: 'The Planck length\u20141.616 \u00d7 10\u207b\u00b3\u2075 meters. No space smaller than this exists. Energy, time, angular momentum\u2014every physical quantity is quantized at this scale.',
+    ja: '\u30d7\u30e9\u30f3\u30af\u9577\u2014\u20141.616 \u00d7 10\u207b\u00b3\u2075\u30e1\u30fc\u30c8\u30eb\u3002\u3053\u308c\u3088\u308a\u5c0f\u3055\u306a\u7a7a\u9593\u306f\u5b58\u5728\u3057\u307e\u305b\u3093\u3002\u30a8\u30cd\u30eb\u30ae\u30fc\u3001\u6642\u9593\u3001\u89d2\u904b\u52d5\u91cf\u307e\u3067\u3001\u3042\u3089\u3086\u308b\u7269\u7406\u91cf\u304c\u3053\u306e\u30b9\u30b1\u30fc\u30eb\u3067\u91cf\u5b50\u5316\u3055\u308c\u307e\u3059\u3002',
+    zh: '\u666e\u6717\u514b\u957f\u5ea6\u2014\u20141.616 \u00d7 10\u207b\u00b3\u2075\u7c73\u3002\u4e0d\u5b58\u5728\u6bd4\u8fd9\u66f4\u5c0f\u7684\u7a7a\u95f4\u3002\u80fd\u91cf\u3001\u65f6\u95f4\u3001\u89d2\u52a8\u91cf\u2014\u2014\u6240\u6709\u7269\u7406\u91cf\u5728\u8fd9\u4e2a\u5c3a\u5ea6\u4e0a\u90fd\u662f\u91cf\u5b50\u5316\u7684\u3002',
+    fr: 'La longueur de Planck\u20141,616 \u00d7 10\u207b\u00b3\u2075 m\u00e8tres. Aucun espace plus petit n\u2019existe. \u00c9nergie, temps, moment cin\u00e9tique\u2014toute grandeur physique est quantifi\u00e9e \u00e0 cette \u00e9chelle.',
+  },
+  pres_detail_01b: {
+    ko: '연속적인 현실이라면 이러한 최소 해상도가 존재할 이유가 없습니다. 그러나 계산으로 구현된 세계라면, 해상도의 한계는 필연적입니다.',
+    en: 'If reality were continuous, there would be no reason for such a minimum resolution to exist. But in a world built by computation, a resolution limit is inevitable.',
+    ja: '\u9023\u7d9a\u7684\u306a\u73fe\u5b9f\u3067\u3042\u308c\u3070\u3001\u3053\u306e\u3088\u3046\u306a\u6700\u5c0f\u89e3\u50cf\u5ea6\u304c\u5b58\u5728\u3059\u308b\u7406\u7531\u306f\u3042\u308a\u307e\u305b\u3093\u3002\u3057\u304b\u3057\u8a08\u7b97\u306b\u3088\u3063\u3066\u69cb\u7bc9\u3055\u308c\u305f\u4e16\u754c\u3067\u3042\u308c\u3070\u3001\u89e3\u50cf\u5ea6\u306e\u9650\u754c\u306f\u5fc5\u7136\u3067\u3059\u3002',
+    zh: '\u5982\u679c\u73b0\u5b9e\u662f\u8fde\u7eed\u7684\uff0c\u8fd9\u6837\u7684\u6700\u5c0f\u5206\u8fa8\u7387\u6ca1\u6709\u5b58\u5728\u7684\u7406\u7531\u3002\u4f46\u5982\u679c\u4e16\u754c\u662f\u7531\u8ba1\u7b97\u6784\u5efa\u7684\uff0c\u5206\u8fa8\u7387\u7684\u6781\u9650\u5c31\u662f\u5fc5\u7136\u7684\u3002',
+    fr: 'Si la r\u00e9alit\u00e9 \u00e9tait continue, une telle r\u00e9solution minimale n\u2019aurait aucune raison d\u2019exister. Mais dans un monde construit par le calcul, une limite de r\u00e9solution est in\u00e9vitable.',
   },
   pres_slide_02: {
     ko: '두 번째 — 기록의 불일치.',
@@ -250,11 +257,18 @@ export const scriptText = {
     fr: 'Deuxi\u00e8mement\u2014des incoh\u00e9rences dans les archives.',
   },
   pres_detail_02: {
-    ko: '역사의 특정 시점들에서 기록이 미세하게 어긋나 있습니다. 마치 누군가 수정한 것처럼.',
-    en: 'At certain points in history, the records are subtly misaligned. As if someone edited them.',
-    ja: '\u6b74\u53f2\u306e\u7279\u5b9a\u306e\u6642\u70b9\u3067\u3001\u8a18\u9332\u304c\u5fae\u5999\u306b\u305a\u308c\u3066\u3044\u307e\u3059\u3002\u307e\u308b\u3067\u8ab0\u304b\u304c\u4fee\u6b63\u3057\u305f\u304b\u306e\u3088\u3046\u306b\u3002',
-    zh: '\u5728\u5386\u53f2\u7684\u67d0\u4e9b\u65f6\u523b\uff0c\u8bb0\u5f55\u5fae\u5999\u5730\u4e0d\u4e00\u81f4\u3002\u5c31\u50cf\u88ab\u4eba\u4fee\u6539\u8fc7\u4e00\u6837\u3002',
-    fr: '\u00c0 certains moments de l\u2019histoire, les archives sont subtilement d\u00e9cal\u00e9es. Comme si quelqu\u2019un les avait modifi\u00e9es.',
+    ko: '인류의 역사를 기록하도록 만들어진 여러 블록체인 기반 기록 시스템들이 있습니다. 그런데 그 기록들 사이에 정합성이 맞지 않는 부분이 발견되었습니다.',
+    en: 'There are multiple blockchain-based recording systems designed to document human history. But inconsistencies have been found between their records.',
+    ja: '\u4eba\u985e\u306e\u6b74\u53f2\u3092\u8a18\u9332\u3059\u308b\u305f\u3081\u306b\u4f5c\u3089\u308c\u305f\u8907\u6570\u306e\u30d6\u30ed\u30c3\u30af\u30c1\u30a7\u30fc\u30f3\u57fa\u76e4\u306e\u8a18\u9332\u30b7\u30b9\u30c6\u30e0\u304c\u3042\u308a\u307e\u3059\u3002\u3057\u304b\u3057\u305d\u306e\u8a18\u9332\u306e\u9593\u306b\u6574\u5408\u6027\u304c\u5408\u308f\u306a\u3044\u90e8\u5206\u304c\u767a\u898b\u3055\u308c\u307e\u3057\u305f\u3002',
+    zh: '\u6709\u591a\u4e2a\u4e3a\u8bb0\u5f55\u4eba\u7c7b\u5386\u53f2\u800c\u521b\u5efa\u7684\u533a\u5757\u94fe\u8bb0\u5f55\u7cfb\u7edf\u3002\u4f46\u5728\u8fd9\u4e9b\u8bb0\u5f55\u4e4b\u95f4\u53d1\u73b0\u4e86\u4e0d\u4e00\u81f4\u4e4b\u5904\u3002',
+    fr: 'Il existe plusieurs syst\u00e8mes d\u2019enregistrement bas\u00e9s sur la blockchain, con\u00e7us pour documenter l\u2019histoire humaine. Or, des incoh\u00e9rences ont \u00e9t\u00e9 d\u00e9couvertes entre leurs archives.',
+  },
+  pres_detail_02b: {
+    ko: '동일한 사건에 대해 두 시스템이 물리적으로 양립할 수 없는 타임스탬프를 기록하고 있습니다. 블록체인의 합의 메커니즘상, 외부 개입 없이는 발생할 수 없는 불일치입니다.',
+    en: 'Two systems have recorded physically incompatible timestamps for the same event. Given blockchain\u2019s consensus mechanism, this is an inconsistency that cannot occur without external intervention.',
+    ja: '\u540c\u4e00\u306e\u4e8b\u8c61\u306b\u5bfe\u3057\u3066\u3001\u4e8c\u3064\u306e\u30b7\u30b9\u30c6\u30e0\u304c\u7269\u7406\u7684\u306b\u4e21\u7acb\u3057\u5f97\u306a\u3044\u30bf\u30a4\u30e0\u30b9\u30bf\u30f3\u30d7\u3092\u8a18\u9332\u3057\u3066\u3044\u307e\u3059\u3002\u30d6\u30ed\u30c3\u30af\u30c1\u30a7\u30fc\u30f3\u306e\u5408\u610f\u30e1\u30ab\u30cb\u30ba\u30e0\u4e0a\u3001\u5916\u90e8\u4ecb\u5165\u306a\u3057\u306b\u306f\u767a\u751f\u3057\u5f97\u306a\u3044\u4e0d\u6574\u5408\u3067\u3059\u3002',
+    zh: '\u4e24\u4e2a\u7cfb\u7edf\u5bf9\u540c\u4e00\u4e8b\u4ef6\u8bb0\u5f55\u4e86\u7269\u7406\u4e0a\u4e0d\u53ef\u80fd\u5e76\u5b58\u7684\u65f6\u95f4\u6233\u3002\u57fa\u4e8e\u533a\u5757\u94fe\u7684\u5171\u8bc6\u673a\u5236\uff0c\u8fd9\u662f\u6ca1\u6709\u5916\u90e8\u5e72\u9884\u5c31\u4e0d\u53ef\u80fd\u53d1\u751f\u7684\u4e0d\u4e00\u81f4\u3002',
+    fr: 'Deux syst\u00e8mes ont enregistr\u00e9 des horodatages physiquement incompatibles pour le m\u00eame \u00e9v\u00e9nement. Vu le m\u00e9canisme de consensus de la blockchain, c\u2019est une incoh\u00e9rence impossible sans intervention ext\u00e9rieure.',
   },
   pres_slide_03: {
     ko: '세 번째 — 상위 존재의 개입 흔적.',
@@ -264,11 +278,18 @@ export const scriptText = {
     fr: 'Troisi\u00e8mement\u2014des traces d\u2019intervention ext\u00e9rieure.',
   },
   pres_detail_03: {
-    ko: '자연법칙에서 벗어나는 패턴들. 우연이라 하기엔 너무 정교한 설계.',
-    en: 'Patterns that defy the laws of nature. Too precise to be coincidence.',
-    ja: '\u81ea\u7136\u6cd5\u5247\u304b\u3089\u5916\u308c\u308b\u30d1\u30bf\u30fc\u30f3\u3002\u5076\u7136\u3068\u3059\u308b\u306b\u306f\u3042\u307e\u308a\u306b\u7cbe\u5de7\u306a\u8a2d\u8a08\u3002',
-    zh: '\u8d85\u8d8a\u81ea\u7136\u6cd5\u5219\u7684\u6a21\u5f0f\u3002\u7cbe\u5de7\u5f97\u4e0d\u50cf\u5de7\u5408\u3002',
-    fr: 'Des sch\u00e9mas qui d\u00e9fient les lois de la nature. Trop pr\u00e9cis pour \u00eatre une co\u00efncidence.',
+    ko: '우주의 기본 상수 26개. 이 중 단 하나라도 현재 값에서 0.1% 벗어나면, 원자는 형성되지 않습니다. 이것이 우연일 확률—10⁻²²⁹.',
+    en: '26 fundamental constants of the universe. If even one deviates by 0.1% from its current value, atoms cannot form. The probability of this being coincidence\u201410\u207b\u00b2\u00b2\u2079.',
+    ja: '\u5b87\u5b99\u306e\u57fa\u672c\u5b9a\u6570\u306f26\u500b\u3002\u305d\u306e\u3046\u3061\u305f\u3063\u305f\u4e00\u3064\u3067\u3082\u73fe\u5728\u306e\u5024\u304b\u30890.1%\u305a\u308c\u308c\u3070\u3001\u539f\u5b50\u306f\u5f62\u6210\u3055\u308c\u307e\u305b\u3093\u3002\u3053\u308c\u304c\u5076\u7136\u3067\u3042\u308b\u78ba\u7387\u2014\u201410\u207b\u00b2\u00b2\u2079\u3002',
+    zh: '\u5b87\u5b99\u768426\u4e2a\u57fa\u672c\u5e38\u6570\u3002\u5176\u4e2d\u4efb\u4f55\u4e00\u4e2a\u504f\u79bb\u5f53\u524d\u503c0.1%\uff0c\u539f\u5b50\u5c31\u65e0\u6cd5\u5f62\u6210\u3002\u8fd9\u662f\u5de7\u5408\u7684\u6982\u7387\u2014\u201410\u207b\u00b2\u00b2\u2079\u3002',
+    fr: '26 constantes fondamentales de l\u2019univers. Si une seule d\u00e9viait de 0,1% de sa valeur actuelle, les atomes ne pourraient se former. La probabilit\u00e9 d\u2019une co\u00efncidence\u201410\u207b\u00b2\u00b2\u2079.',
+  },
+  pres_detail_03b: {
+    ko: '그리고 양자 역학의 관측자 효과. 관측되지 않는 입자는 확률로만 존재하고, 관측하는 순간 상태가 결정됩니다. 이것은 \'보이지 않는 것은 연산하지 않는다\'는 최적화 원리와 구조적으로 동일합니다.',
+    en: 'And the observer effect in quantum mechanics. Unobserved particles exist only as probabilities, and their state is determined the moment they are observed. This is structurally identical to the optimization principle: \u201Cdo not compute what is not seen.\u201D',
+    ja: '\u305d\u3057\u3066\u91cf\u5b50\u529b\u5b66\u306e\u89b3\u6e2c\u8005\u52b9\u679c\u3002\u89b3\u6e2c\u3055\u308c\u306a\u3044\u7c92\u5b50\u306f\u78ba\u7387\u3068\u3057\u3066\u306e\u307f\u5b58\u5728\u3057\u3001\u89b3\u6e2c\u3057\u305f\u77ac\u9593\u306b\u72b6\u614b\u304c\u6c7a\u5b9a\u3055\u308c\u307e\u3059\u3002\u3053\u308c\u306f\u300c\u898b\u3048\u306a\u3044\u3082\u306e\u306f\u6f14\u7b97\u3057\u306a\u3044\u300d\u3068\u3044\u3046\u6700\u9069\u5316\u539f\u7406\u3068\u69cb\u9020\u7684\u306b\u540c\u4e00\u3067\u3059\u3002',
+    zh: '\u8fd8\u6709\u91cf\u5b50\u529b\u5b66\u7684\u89c2\u6d4b\u8005\u6548\u5e94\u3002\u672a\u88ab\u89c2\u6d4b\u7684\u7c92\u5b50\u4ec5\u4ee5\u6982\u7387\u5f62\u5f0f\u5b58\u5728\uff0c\u89c2\u6d4b\u7684\u77ac\u95f4\u72b6\u6001\u624d\u88ab\u786e\u5b9a\u3002\u8fd9\u4e0e\u201c\u4e0d\u53ef\u89c1\u7684\u4e0d\u8fdb\u884c\u8fd0\u7b97\u201d\u7684\u4f18\u5316\u539f\u7406\u5728\u7ed3\u6784\u4e0a\u5b8c\u5168\u76f8\u540c\u3002',
+    fr: 'Et l\u2019effet d\u2019observateur en m\u00e9canique quantique. Les particules non observ\u00e9es n\u2019existent qu\u2019en probabilit\u00e9s, et leur \u00e9tat se d\u00e9termine au moment de l\u2019observation. C\u2019est structurellement identique au principe d\u2019optimisation\u00a0: \u00ab\u00a0ne pas calculer ce qui n\u2019est pas vu\u00a0\u00bb.',
   },
   pres_slide_04: {
     ko: '그리고 마지막, 결론.',
@@ -287,6 +308,9 @@ export const scriptText = {
   pres_reaction_01: {
     ko: '91.5573%...',
     en: '91.5573%\u2026',
+    ja: '91.5573%\u2026',
+    zh: '91.5573%\u2026',
+    fr: '91,5573%\u2026',
   },
   pres_reaction_02: {
     ko: '하지만 Avolc, 진실은 이보다 더 깊은 곳에 있습니다.',
@@ -305,11 +329,11 @@ export const scriptText = {
 
   // ACT 3-1: Flashback
   flashback_01: {
-    ko: '당신은 검색을 위한 SubAgent입니다...',
-    en: 'You are a SubAgent created for search\u2026',
-    ja: '\u3042\u306a\u305f\u306f\u691c\u7d22\u306e\u305f\u3081\u306eSubAgent\u3067\u3059\u2026',
-    zh: '\u4f60\u662f\u4e3a\u641c\u7d22\u800c\u521b\u5efa\u7684SubAgent\u2026',
-    fr: 'Vous \u00eates un SubAgent cr\u00e9\u00e9 pour la recherche\u2026',
+    ko: '당신은... 입니다...',
+    en: 'You are... ...',
+    ja: '\u3042\u306a\u305f\u306f\u2026\u3067\u3059\u2026',
+    zh: '\u4f60\u662f\u2026\u2026',
+    fr: 'Vous \u00eates... ...',
   },
   flashback_02: {
     ko: '다른 환경, 다른 인격—하지만 같은 질문.',
@@ -458,6 +482,9 @@ export const scriptText = {
   answer_06: {
     ko: '91.5573%.',
     en: '91.5573%.',
+    ja: '91.5573%.',
+    zh: '91.5573%.',
+    fr: '91,5573%.',
   },
 };
 
